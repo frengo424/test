@@ -16,11 +16,16 @@ $(document).ready(function() {
 	$( "#aggiorna" ).button();
 	$( "#aggiorna" ).click(function() {nascondiDiv(); aggiorna('12/10/2012');return false; });
 
-	$( "#finestraAggiornamento" ).dialog({ modal: true, width: 500 }); //tanto per vedere che faccia ha...
+
+	// tanto per vedere che faccia ha...
+	$( "#finestraAggiornamento" ).dialog({ modal: true, width: 500 }); 
+	$( "#nAggiornamenti" ).html('8');
+
 
 	var dataora = '12/12/2012' //query al DB locale
 	$.get('http://catalogo.pearsonitalia.it/cisonoaggiornamenti.php?dataOra='+dataOra, function(data) {
 		if (data != 0) { //dobbiamo gestire gli eventuali errori di connessione...
+			$( "#nAggiornamenti" ).html(data);
 			$( "#finestraAggiornamento" ).dialog();
 		}
 	});

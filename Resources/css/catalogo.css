@@ -3,12 +3,7 @@ body {
 	padding:0;
 	background-color: white;
 	font-family: Verdana, Geneva, sans-serif;
-}
-
-form {
-	margin:0;
-	padding:0;
-	border:0;
+	overflow-x: hidden;
 }
 
 /************************************************
@@ -19,7 +14,6 @@ form {
 	color: #FFF;
 	background-color: #ed6b06;
 	width: 100%;
-	/*height: 35px;*/
 }
 #pearson h1 {
 	position:absolute;
@@ -43,6 +37,8 @@ form {
 ************************************************/
 #contenuto {
 	padding:10px;
+	width:98%;
+	text-align:center;
 }
 
 #contenuto h1{
@@ -63,3 +59,65 @@ form {
 #aggiorna {
 	float:right;
 }
+
+#sceltaScuola {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#sceltaScuola li {
+	display:inline-block;
+	width:200px;
+	height:230px;
+	text-align:center;
+	margin-left:5px;
+	margin-right:5px;
+}
+#sceltaScuola a {
+	display:inline-block;
+	color:#000000;
+	font-size:18px;
+	font-weight:bolder;
+	width:200px;
+	height:30px;
+	text-decoration:none;
+	padding-top:208px;
+}
+
+#sceltaScuola a:hover {
+	background-color:#ed6b06;
+	color:#ffffff;
+	cursor:pointer;
+	border-left:3px solid #000000;
+	border-right:3px solid #000000;
+}
+
+#scuolaPrimaria{
+	background-image:url('../img/primary.jpg');
+	background-repeat:no-repeat;
+}
+#scuolaSecondaria{
+	background-image:url('../img/school.jpg');
+	background-repeat:no-repeat;
+}
+#variaUniversita {
+	background-image:url('../img/university.jpg');
+	background-repeat:no-repeat;
+}
+
+/************************************************
+** FOOTER
+************************************************/
+#copyright {
+	position:absolute;
+	bottom:0px;
+	text-transform: uppercase;
+	font-size:11px;
+	font-weight:bolder;
+	text-align:center;
+	color: #fff;
+	background-color: #ed6b06;
+	width: 100%;
+}
+
+
