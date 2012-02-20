@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <sdk-version>1.1.0</sdk-version>
+    <guid>8b0b9c87-fb79-4ade-a021-2f1dc50ed5a8</guid>
+    <!-- These values are edited/maintained by Titanium Developer -->
+    <id>com.pearson.catalogo</id>
+    <name>Catalogo Pearson Italia</name>
+    <version>1.0</version>
+    <publisher>Pearson Italia</publisher>
+    <url>http://pearson.it</url>
+    <description>Catalogo offline Pearson Italia</description>
+    <icon>default_app_logo.png</icon>
+    <copyright>2012 Pearson Italia</copyright>
+    <!-- Window Definition - these values can be edited -->
+    <window>
+        <id>initial</id>
+        <title>DeskTest</title>
+        <url>app://index.html</url>
+        <width>700</width>
+        <max-width>3000</max-width>
+        <min-width>500</min-width>
+        <height>500</height>
+        <max-height>3000</max-height>
+        <min-height>0</min-height>
+        <fullscreen>true</fullscreen>
+        <resizable>true</resizable>
+        <chrome scrollbars="true">true</chrome>
+        <maximizable>true</maximizable>
+        <minimizable>true</minimizable>
+        <closeable>true</closeable>
+    </window>
+</ti:app>
