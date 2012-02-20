@@ -22,7 +22,7 @@
         <height>500</height>
         <max-height>3000</max-height>
         <min-height>0</min-height>
-        <fullscreen>true</fullscreen>
+        <fullscreen>false</fullscreen>
         <resizable>true</resizable>
         <chrome scrollbars="true">true</chrome>
         <maximizable>true</maximizable>

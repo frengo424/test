@@ -13,6 +13,8 @@ $(document).ready(function() {
 	$( "#interrompi" ).button();
 	$( "#interrompi" ).click(function() {nascondiDiv();return false; });
 	
+	$( "#aggiorna" ).button();
+	$( "#aggiorna" ).click(function() {nascondiDiv(); aggiorna('12/10/2012');return false; });
 	
 	// PER CRI: ecco qulche funzione utile!
 	
@@ -30,6 +32,7 @@ $(document).ready(function() {
 	//È bene richiamare il DB subito in apertura in modo da evitare il piccolo lag alla prima ricerca
 
 	function aggiorna(dataOra) {
+		alert("E che cavolo sto aggiornando!");
 		$.get('http://catalogo.pearsonitalia.it/aggiorna.php?dataOra='+dataOra, function(data) {
 			var dbf = Titanium.Database.install("catalogo.db", "catalogo"); // Installa il DB
 			//var rs = dbf.execute("SELECT prezzo FROM catalogo WHERE id=0 LIMIT 1"); // testa una query

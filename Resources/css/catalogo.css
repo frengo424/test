@@ -5,13 +5,19 @@ body {
 	font-family: Verdana, Geneva, sans-serif;
 }
 
+form {
+	margin:0;
+	padding:0;
+	border:0;
+}
+
 /************************************************
 ** HEADER
 ************************************************/
 #pearson {
 	text-transform: uppercase;
 	color: #FFF;
-	background-color: #930;
+	background-color: #ed6b06;
 	width: 100%;
 	/*height: 35px;*/
 }
@@ -39,6 +45,17 @@ body {
 	padding:10px;
 }
 
+#contenuto h1{
+	color: #ed6b06;
+}
+
+#contenuto h2{
+}
+
 #interrompi {
+	float:left;
+}
+
+#aggiorna {
 	float:right;
 }
