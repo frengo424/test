@@ -11,10 +11,19 @@ $(document).ready(function() {
 	}
 	
 	$( "#interrompi" ).button();
-	$( "#interrompi" ).click(function() {nascondiDiv();return false; });
+	$( "#interrompi" ).click(function() {$( "#finestraAggiornamento" ).dialog('close'); return false; });
 	
 	$( "#aggiorna" ).button();
 	$( "#aggiorna" ).click(function() {nascondiDiv(); aggiorna('12/10/2012');return false; });
+
+	$( "#finestraAggiornamento" ).dialog({ modal: true, width: 500 }); //tanto per vedere che faccia ha...
+
+	var dataora = '12/12/2012' //query al DB locale
+	$.get('http://catalogo.pearsonitalia.it/cisonoaggiornamenti.php?dataOra='+dataOra, function(data) {
+		if (data != 0) { //dobbiamo gestire gli eventuali errori di connessione...
+			$( "#finestraAggiornamento" ).dialog();
+		}
+	});
 	
 	// PER CRI: ecco qulche funzione utile!
 	
@@ -32,7 +41,7 @@ $(document).ready(function() {
 	//È bene richiamare il DB subito in apertura in modo da evitare il piccolo lag alla prima ricerca
 
 	function aggiorna(dataOra) {
-		alert("E che cavolo sto aggiornando!");
+		alert("E che cavolo, sto aggiornando!");
 		$.get('http://catalogo.pearsonitalia.it/aggiorna.php?dataOra='+dataOra, function(data) {
 			var dbf = Titanium.Database.install("catalogo.db", "catalogo"); // Installa il DB
 			//var rs = dbf.execute("SELECT prezzo FROM catalogo WHERE id=0 LIMIT 1"); // testa una query
