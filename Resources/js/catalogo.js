@@ -17,19 +17,25 @@ $(document).ready(function() {
 	$( "#aggiorna" ).click(function() {nascondiDiv(); aggiorna('12/10/2012');return false; });
 
 
-	// tanto per vedere che faccia ha...
-	$( "#finestraAggiornamento" ).dialog({ modal: true, width: 500 }); 
-	$( "#nAggiornamenti" ).html('8');
+	function verificaUpdate(){
+		// tanto per vedere che faccia ha...
+		$( "#finestraAggiornamento" ).dialog({ modal: true, width: 500, height:280 }); 
+		$( "#nAggiornamenti" ).html('8');
 
+		var dataora = '12/12/2012' //query al DB locale
+		$( "#ultimoAggiornameto" ).html(dataora); //Aggiorna l'interfaccia utente
 
-	var dataora = '12/12/2012' //query al DB locale
-	$.get('http://catalogo.pearsonitalia.it/cisonoaggiornamenti.php?dataOra='+dataOra, function(data) {
-		if (data != 0) { //dobbiamo gestire gli eventuali errori di connessione...
-			$( "#nAggiornamenti" ).html(data);
-			$( "#finestraAggiornamento" ).dialog();
-		}
-	});
+		$.get('http://catalogo.pearsonitalia.it/cisonoaggiornamenti.php?dataOra='+dataOra, function(data) {
+			if (data != 0) { //dobbiamo gestire gli eventuali errori di connessione...
+				$( "#nAggiornamenti" ).html(data);
+				$( "#finestraAggiornamento" ).dialog();
+			}
+		});
+	}
+
+	verificaUpdate();
 	
+
 	// PER CRI: ecco qulche funzione utile!
 	
 	Titanium.API.info('apro il DB'); // Per scrivere nella finestra di debug
