@@ -31,7 +31,7 @@ $(document).ready(function() {
 				$( "#finestraAggiornamento" ).dialog();
 			}
 		});
-	}
+	} 
 
 	verificaUpdate();
 	
