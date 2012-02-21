@@ -31,10 +31,10 @@ $(document).ready(function() {
 				$( "#finestraAggiornamento" ).dialog();
 			}
 		});
-	} 
+	}
 
 	verificaUpdate();
-	
+
 
 	// PER CRI: ecco qulche funzione utile!
 	
