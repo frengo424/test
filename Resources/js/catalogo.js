@@ -526,8 +526,8 @@ $(document).ready(function() {
 		
 	function getLastUpdate() {
 		
-		var dbPath = Titanium.Filesystem.getFile('Resources/catalogo.sqlite');
-
+		var dbPath = getDbPath();
+		
 		if (dbPath.exists()) {
 			
     		var db = Titanium.Database.openFile(dbPath);
@@ -557,4 +557,8 @@ $(document).ready(function() {
 			
 			return "";
 		}
-	}
+	}	
+
+function getDbPath () {
+	return Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'Resources/catalogo.sqlite');
+}
