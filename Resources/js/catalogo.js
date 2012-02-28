@@ -8,6 +8,7 @@ $(document).ready(function() {
 	
 	var lastUpdateDate = getLastUpdate();
 	
+	$( "#breadcrumbs" ).hide();
 	$("#recordNumber").val('0');
 	$("#dateUpdate").val(lastUpdateDate);
 	$("#ultimoAggiornamento").html(printDate(lastUpdateDate));
@@ -225,20 +226,20 @@ $(document).ready(function() {
 				break;
 		}
 			
-		$( "#breadcrumbs" ).html(breadcrumbsContent);
+		$( "#breadcrumbs" ).html(breadcrumbsContent).show();
 		$( "#ricerca" ).html(ricercaContent);
 		$( "#materiaStr" ).val($('#materiaStrLabel').val());
 		$( "#searchStr" ).val($('#searchStrLabel').val());
-		$( "#contenuto" ).html('');
+		$( "#contenuto" ).html('').css('top', '140');
 	}
 	
 	function backHome() {
 	
 		var contenutoContent = "<h1>Catalogo Pearson Italia</h1><ul id=\"sceltaScuola\"><li><a href=\"Javascript:switchArea('1')\" id=\"scuolaPrimaria\">Scuola Primaria</a></li><li><a href=\"Javascript:switchArea('2')\" id=\"scuolaSecondaria\">Scuola Secondaria</a></li><li><a href=\"Javascript:switchArea('555')\" id=\"variaUniversita\">Varia / Universit&agrave;</a></li></ul>";
 		
-		$( "#breadcrumbs" ).html('');
+		$( "#breadcrumbs" ).html('').hide();
 		$( "#ricerca" ).html('');
-		$( "#contenuto" ).html(contenutoContent);
+		$( "#contenuto" ).html(contenutoContent).css('top', '50');
 	}
 	
 /* Funzioni accessorie */

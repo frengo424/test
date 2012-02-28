@@ -3,8 +3,8 @@ body {
 	padding:0;
 	background-color: white;
 	font-family: Verdana, Geneva, sans-serif;
-	overflow-x: hidden;
-	min-width:905px;
+	overflow: hidden;
+	min-width:750px;
 	min-height:100%;
 }
 
@@ -38,9 +38,14 @@ body {
 ** CONTENUTO
 ************************************************/
 #contenuto {
+	position:absolute;
+	top:50px;
+	right:0px;
+	bottom:15px;
+	left:0px;
 	padding:10px;
-	width:98%;
 	text-align:center;
+	overflow-x: auto;
 }
 
 #contenuto h1 {
@@ -128,18 +133,23 @@ body {
 }
 
 #breadcrumbs p {
-	display:block;
+	display:inline-block;
 	margin:0;
-	padding:0;
+	padding:0 5px 0 5px;
 	border:0;
+	color:#888;
 	font-size:11px;
-	line-height:25px;
+	font-weight:bold;
+	/*line-height:25px;*/
 }
 
 #breadcrumbs a {
-	color:#085394;
-	text-decoration:underline;
-	line-height:25px;
+	display:inline-block;
+	padding:5px;
+	color:#444;
+	font-weight:bold;
+	text-decoration:none;
+	/*line-height:25px;*/
 }
 
 #breadcrumbs a:hover {
@@ -167,39 +177,37 @@ body {
 	border:1px solid #666;
 	background-color:#F1F1F1;
 }
-
 #ricerca fieldset select {
 	float:left;
 	margin-left:20px;
 }
-
 #ricerca fieldset input {
 	float:left;
 	margin-left:20px;
 }
-
 #ricerca fieldset input.first {
 	margin-left:0;
 }
-
 #ricerca fieldset select.first {
 	margin-left:0;
 }
-
-#ricerca fieldset #searchStr {
-	width:200px;
-	min-width:150px;
+#ricerca fieldset #marchio_id {
+	width:100px;
 }
-
 #ricerca fieldset #materiaStr {
 	width:150px;
 	min-width:100px;
 }
-
+#ricerca fieldset #searchStr {
+	position:absolute;
+	right:80px;
+	left:425px;
+	/*width:200px;
+	min-width:150px;*/
+}
 #ricerca fieldset #searchBtt {
 	float:right;
 }
-
 /************************************************
 ** Risultato Ricerca
 ************************************************/
