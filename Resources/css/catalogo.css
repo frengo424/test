@@ -120,20 +120,20 @@ body {
 	display:block;
 	margin:0;
 	padding:0;
-	padding-left:10px;
-	padding-right:10px;
 	border:0;
 	height:25px;
-	background-color:#F1F1F1;
 }
 
 #breadcrumbs p {
 	display:block;
 	margin:0;
 	padding:0;
+	padding-left:10px;
+	padding-right:10px;
 	border:0;
 	font-size:11px;
 	line-height:25px;
+	background-color:#F1F1F1;
 }
 
 #breadcrumbs a {
