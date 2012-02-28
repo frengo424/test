@@ -215,7 +215,7 @@ body {
 #rowNumber {
 	display:block;
 	margin:0;
-	margin-bottom:30px;
+	margin-bottom:15px;
 	padding:0;
 	border:0;
 	text-align:left;
@@ -224,74 +224,56 @@ body {
 div.risultatoRiga {
 	display:block;
 	margin:0;
-	padding:20px;
-	padding-left:0;
-	padding-right:0;
-	border:0;
-	border-bottom:1px solid #666;
-	overflow:hidden;
-}
-
-div.risultatoRigaSx {
-	float:left;
-	width:60%;
-	margin:0;
 	padding:0;
-	border:0;
 	overflow:hidden;
+	background-color: #fff;
+	background-image:url('../img/bgRisultati.jpg');
+	background-position:right;
+	background-repeat:repeat-y;
+	margin-bottom:15px;
 	text-align:left;
+	border-top: 1px solid;
+	border-top-color: #AAA;
 }
-
-div.risultatoRigaDx {
-	float:left;
-	width:37%;
-	margin:0;
-	margin-left:20px;
-	padding:0;
-	border:0;
-	overflow:hidden;
-	text-align:left;
-}
-
 div.risultatoRiga p {
 	display:block;
 	margin:0;
 	padding:0;
 	border:0;
+	font-size:12px;
 }
-
+div.risultatoRiga p.risultato-isbn{
+	margin-top:5px;
+}
 div.risultatoRiga p.risultato-autore {
-	margin-top:10px;
+	margin-top:3px;
 }
-
 div.risultatoRiga p.risultato-titolo {
-	margin-top:10px;
-	font-size:25px;
-	font-weight:normal;
+	margin:0px;
+	font-size:18px;
+	font-weight:bold;
 }
-
 div.risultatoRiga div.risultato-sottotitolo {
-	margin-top:0;
+	margin:0;
+	font-size:15px;
+	font-style:italic;
 }
-
-div.risultatoRiga p.risultato-marchio {
+div.risultatoRiga p.risultato-percorso {
+	margin-top:5px;
+}
+div.risultatoRiga img.risultato-marchio {
+	float:right;
 	margin-top:10px;
+	margin-right:6px;
 }
 
-div.risultatoRigaSx img {
+div.risultatoRiga img {
 	float:left;
 	margin:0;
-	margin-right:20px;
+	margin-right:10px;
 }
 
-div.risultatoRiga p a {
-	color:#085394;
-	text-decoration:underline;
-}
 
-div.risultatoRiga p a:hover {
-	text-decoration:none;
-}
 
 /************************************************
 ** SCHEDA

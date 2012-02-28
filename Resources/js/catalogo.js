@@ -509,18 +509,20 @@ $(document).ready(function() {
 						break;
 				}
 			
-				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRiga\">";
-				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaSx\">";
+				//<a href=\"Javascript:cercaISBN('"+rs.fieldByName("volume_isbn")+"')\">"+   + </a>
+			
+				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRiga\" onclick=\"Javascript:cercaISBN('"+rs.fieldByName("volume_isbn")+"')\">";
+				if (rs.fieldByName("opera_marchio")!="") { risultatoRicercaHtml = risultatoRicercaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
+				//risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaSx\">";
 				risultatoRicercaHtml = risultatoRicercaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
-				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-isbn\">ISBN: <a href=\"Javascript:cercaISBN('"+rs.fieldByName("volume_isbn")+"')\">"+rs.fieldByName("volume_isbn")+"</a></p>";
+				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-isbn\">ISBN "+rs.fieldByName("volume_isbn")+"</p>";
 				if (rs.fieldByName("volume_autori")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-autore\">"+rs.fieldByName("volume_autori")+"</p>"; }
 				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-titolo\">"+rs.fieldByName("volume_titolo")+"</p>";
 				if (rs.fieldByName("volume_sottotitolo")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_sottotitolo")+"</div>"; }
-				risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
-				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaDx\">";
 				if (rs.fieldByName("percorsi_html")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-percorso\">"+rs.fieldByName("percorsi_html")+"</p>"; }
-				if (rs.fieldByName("opera_marchio")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-marchio\">"+rs.fieldByName("opera_marchio")+"</p>"; }
-				risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
+				//risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
+				//risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaDx\">";
+				//risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
 				risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
 				
 				rs.next();
@@ -540,6 +542,26 @@ $(document).ready(function() {
 			alert("Database non trovato");
 		}
 	}
+	
+	function immagineMarchio(marchio) {
+		var immagine="";
+		switch (marchio) {	
+			case 'Edizioni Scolastiche Bruno Mondadori':
+				immagine="esbmo.jpg";
+				break;
+			case 'Bruno Mondadori':
+				immagine="bm.jpg";
+				break;
+			case 'Paravia':
+				immagine="paravia.jpg";
+				break;
+			case 'Archimede Edizioni':
+				immagine="ae.jpg";
+				break;
+		}
+		return "<img class='risultato-marchio' src='img/marchi/"+immagine+"'>";
+	}
+	
 	
 	function cercaISBN(isbn) {
 		
