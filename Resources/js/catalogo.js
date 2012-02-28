@@ -96,7 +96,7 @@ $(document).ready(function() {
 						updateInfo[2] : query di inserimento/modifica
 					*/
 
-					var dbPath = Titanium.Filesystem.getFile('Resources/catalogo.sqlite');
+					var dbPath = getDbPath();
 
 					if (dbPath.exists()) {
 			
@@ -256,7 +256,7 @@ $(document).ready(function() {
 
 	function printMarchio() {
 		
-		var dbPath = Titanium.Filesystem.getFile('Resources/catalogo.sqlite');
+		var dbPath = getDbPath();
 
 		if (dbPath.exists()) {
 			
@@ -289,7 +289,7 @@ $(document).ready(function() {
 	
 	function startSearch() {
 		
-		var dbPath = Titanium.Filesystem.getFile('Resources/catalogo.sqlite');
+		var dbPath = getDbPath();
 
 		if (dbPath.exists()) {
 			
@@ -417,7 +417,7 @@ $(document).ready(function() {
 	
 	function cercaISBN(isbn) {
 		
-		var dbPath = Titanium.Filesystem.getFile('Resources/catalogo.sqlite');
+		var dbPath = getDbPath();
 
 		if (dbPath.exists()) {
 			
@@ -559,6 +559,7 @@ $(document).ready(function() {
 		}
 	}	
 
-function getDbPath () {
-	return Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'Resources/catalogo.sqlite');
-}
+	function getDbPath () {
+		
+		return Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'Resources/catalogo.sqlite');
+	}
