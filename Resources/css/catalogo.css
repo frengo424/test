@@ -4,6 +4,7 @@ body {
 	background-color: white;
 	font-family: Verdana, Geneva, sans-serif;
 	overflow-x: hidden;
+	min-height:100%;
 }
 
 /************************************************
@@ -109,9 +110,294 @@ body {
 	background-repeat:no-repeat;
 }
 
+
+/************************************************
+** Breadcrumbs
+************************************************/
+
+#breadcrumbs {
+	display:block;
+	margin:0;
+	padding:10px;
+	border:0;
+	line-height:40px;
+}
+
+#breadcrumbs p {
+	display:block;
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+#breadcrumbs a {
+	color:#085394;
+	text-decoration:underline;
+}
+
+#breadcrumbs a:hover {
+	text-decoration:none;
+}
+
+/************************************************
+** Ricerca
+************************************************/
+
+#ricerca {
+	display:block;
+	margin:0;
+	padding:10px;
+	border:0;
+	overflow:hidden;
+}
+
+#ricerca fieldset {
+	display:block;
+	margin:0;
+	padding:10px;
+	border:1px solid #666;
+	background-color:#F1F1F1;
+}
+
+#ricerca fieldset select {
+	float:left;
+	margin-left:20px;
+}
+
+#ricerca fieldset select#macrodestinazione_id {
+	margin-left:0;
+}
+
+#ricerca fieldset input {
+	float:left;
+	margin-left:20px;
+}
+
+#ricerca fieldset #searchStr {
+	width:30%;
+	min-width:180px;
+}
+
+/************************************************
+** Risultato Ricerca
+************************************************/
+
+#rowNumber {
+	display:block;
+	margin:0;
+	margin-bottom:30px;
+	padding:0;
+	border:0;
+	text-align:left;
+}
+
+div.risultatoRiga {
+	display:block;
+	margin:0;
+	padding:20px;
+	padding-left:0;
+	padding-right:0;
+	border:0;
+	border-bottom:1px solid #666;
+	overflow:hidden;
+}
+
+div.risultatoRigaSx {
+	float:left;
+	width:60%;
+	margin:0;
+	padding:0;
+	border:0;
+	overflow:hidden;
+	text-align:left;
+}
+
+div.risultatoRigaDx {
+	float:left;
+	width:37%;
+	margin:0;
+	margin-left:20px;
+	padding:0;
+	border:0;
+	overflow:hidden;
+	text-align:left;
+}
+
+div.risultatoRiga p {
+	display:block;
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+div.risultatoRiga p.risultato-autore {
+	margin-top:10px;
+}
+
+div.risultatoRiga p.risultato-titolo {
+	margin-top:10px;
+	font-size:25px;
+	font-weight:normal;
+}
+
+div.risultatoRiga div.risultato-sottotitolo {
+	margin-top:0;
+}
+
+div.risultatoRiga p.risultato-marchio {
+	margin-top:10px;
+}
+
+div.risultatoRigaSx img {
+	float:left;
+	margin:0;
+	margin-right:20px;
+}
+
+div.risultatoRiga p a {
+	color:#085394;
+	text-decoration:underline;
+}
+
+div.risultatoRiga p a:hover {
+	text-decoration:none;
+}
+
+/************************************************
+** SCHEDA
+************************************************/
+
+div.risultatoRiga p.risultato-pagine-prezzo {
+	margin-top:10px;
+	padding:10px;
+	background-color:#DDD;
+}
+
+#digilibroBtt {
+	margin-top:10px;
+}
+
+#pannelli {
+	display:block;
+	margin:0;
+	padding:0;
+	border:0;
+	text-align:left;
+}
+
+p.header {
+	display:block;
+	margin:0;
+	margin-bottom:20px;
+	padding:10px;
+	border:0;
+	background-color:#F1F1F1;
+}
+
+.sezione {
+	display:block;
+	margin:0;
+	padding:10px;
+	padding-top:0;
+	padding-bottom:20px;
+	border:0;
+	text-align:left;
+}
+
+#sezione-struttura {
+	padding-left:0;
+	padding-right:0;
+}
+
+#box-struttura {
+	display:block;
+	margin:0;
+	padding:0;
+	border:0;
+	text-align:left;
+	overflow:hidden;
+}
+
+#box-struttura div.struttura {
+	display:block;
+	margin:0;
+	padding:10px;
+	padding-left:0;
+	border:0;
+	background-color:#F1F1F1;
+	overflow:hidden;
+}
+
+.volume-struttura {
+	float:left;
+	width:23%;
+	margin:0;
+	margin-left:10px;
+	margin-top:10px;
+	padding:10px;
+	border:1px solid #666;
+}
+
+p.struttura-titolo {
+	margin-left:10px;
+	margin-top:0;
+	padding:20px;
+	background-color:#666;
+	color:#FFF;
+	font-weight:bold;
+}
+
+.volume-struttura p {
+	display:block;
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+.volume-struttura p.volume-struttura-titolo {
+	margin-top:10px;
+	font-weight:bold;
+}
+
+.volume-struttura p.volume-struttura-descrizione {
+	margin-top:10px;
+}
+
+.volume-struttura p.volume-struttura-isbn {
+	margin-top:10px;
+}
+
+.volume-struttura p.volume-struttura-pagine {
+	margin-top:10px;
+}
+
+.volume-struttura p.volume-struttura-isbn span {
+	font-weight:bold;
+}
+
+.volume-struttura p.volume-struttura-pagine span {
+	font-weight:bold;
+}
+
+.volume-struttura p a {
+	color:#085394;
+	text-decoration:underline;
+}
+
+.volume-struttura p a:hover {
+	text-decoration:none;
+}
+
 /************************************************
 ** FOOTER
 ************************************************/
+#pageContent {
+	position:relative;
+	display:block;
+	margin:0;padding:0;border:0;
+	min-height:100%;
+}
+
 #copyright {
 	position:absolute;
 	bottom:0px;
@@ -124,4 +410,40 @@ body {
 	width: 100%;
 }
 
+/************************************************
+** Aggiornamento
+************************************************/
+#loader-header {
+	display: block;
+	margin:0;
+	padding:0;
+	border:0;
+	font-weight:bolder;
+	font-size:25px;
+	text-align:center;
+}
 
+#loader-exp {
+	display: block;
+	margin:0;
+	margin-top:20px;
+	padding:0;
+	border:0;
+	font-size:11px;
+	text-align:center;
+}
+
+#loader-action {
+	display: block;
+	margin:0;
+	margin-top:20px;
+	padding:0;
+	border:0;
+	font-weight:bolder;
+	font-size:11px;
+	text-align:center;
+}
+
+#loader-img {
+	margin-top:40px;
+}

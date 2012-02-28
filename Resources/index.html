@@ -1,16 +1,18 @@
 <html>
 	<head>
-		<title>Pearson Italia - Catalogo - File modificato da Cristiano il 22/02/2012</title>
+		<title>Pearson Italia - Catalogo</title>
 
 		<link type="text/css" href="js/jquery/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" />	
 		<link type="text/css" href="css/catalogo.css" rel="stylesheet" />	
 
 		<script type="text/javascript" src="js/jquery/js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
+		<script type="text/javascript" src="js/bin2hex.js"></script>
 		<script type="text/javascript" src="js/catalogo.js"></script>
 
 	</head>
 	<body>
+		<div id="pageContent">
 		<div id="pearson">
 			<a href="#"><img src="img/pearson-logo.png" alt="Pearson Corporate Logo" /></a>
 			<h1>Pearson</h1>
@@ -21,9 +23,9 @@
 		<div id="contenuto">
 			<h1>Catalogo Pearson Italia</h1>
 			<ul id="sceltaScuola">
-				<li><a href="#" id="scuolaPrimaria">Scuola Pimaria</a></li>
-				<li><a href="#" id="scuolaSecondaria">Scuola Secondaria</a></li>
-				<li><a href="#" id="variaUniversita">Varia / Università</a></li>
+				<li><a href="Javascript:switchArea('1')" id="scuolaPrimaria">Scuola Primaria</a></li>
+				<li><a href="Javascript:switchArea('2')" id="scuolaSecondaria">Scuola Secondaria</a></li>
+				<li><a href="Javascript:switchArea('555')" id="variaUniversita">Varia / Universit&agrave;</a></li>
 			</ul>
 		</div>
 		<div id="finestraAggiornamento" title="Aggiornamento catalogo">
@@ -31,6 +33,7 @@
 			<a id="interrompi">Continua senza aggiornare</a>
 			<a id="aggiorna">Aggiorna...</a>
 		</div>
-		<div id="copyright">© Pearson Italia, tutti i diritti riservati - Ultimo aggiornamento: <a href="Javascript:verificaUpdate();" id="ultimoAggiornameto">27 luglio 1987</a></div>
+		<div id="copyright">&copy; Pearson Italia, tutti i diritti riservati - Ultimo aggiornamento: <a href="Javascript:verificaUpdate();" id="ultimoAggiornamento"></a><input type="hidden" id="recordNumber" name="recordNumber" /><input type="hidden" id="dateUpdate" name="dateUpdate" /></div>
+		</div>
 	</body>
 </html>
