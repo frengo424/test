@@ -127,6 +127,7 @@ body {
 	padding:0;
 	border:0;
 	height:25px;
+	background-color:#F1F1F1;
 }
 
 #breadcrumbs p {
@@ -139,7 +140,7 @@ body {
 	color:#888;
 	font-size:11px;
 	font-weight:bold;
-	/*background-color:#F1F1F1;*/
+	background-color:#F1F1F1;
 }
 
 #breadcrumbs a {
