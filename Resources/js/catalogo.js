@@ -186,18 +186,49 @@ $(document).ready(function() {
 		
 		var breadcrumbsContent = "<p><a href=\"Javascript:backHome()\">Inizio</a> > "+getAreaName(areaId)+"</p>";
 		
-		var ricercaContent = "<fieldset><legend>Ricerca</legend>";
-		ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
-		ricercaContent = ricercaContent+"<select id=\"macrodestinazione_id\"><option value=\"\">Macrodestinazione</option></select>"; 
-		ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option>"+printMarchio()+"</select>"; 
-		ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
-		ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"searchStrLabel\" name=\"searchStrLabel\" value=\"ISBN, autore, materia o titolo\" />";  
-		ricercaContent = ricercaContent+"<input type=\"button\" id=\"searchBtt\" name=\"searchBtt\" value=\"cerca\" onclick=\"startSearch()\" />"; 
-		ricercaContent = ricercaContent+"</fieldset>";
-		
+		switch (areaId) {
+			
+			case '1':
+				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
+				ricercaContent = ricercaContent+"<select id=\"marchio_id\" class=\"first\"><option value=\"\">Marchio</option>"+printMarchio(areaId)+"</select>"; 
+				ricercaContent = ricercaContent+"<input type=\"text\" id=\"materiaStr\" name=\"materiaStr\" value=\"\" onclick=\"if ($(this).val()==$('#materiaStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#materiaStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />"; 
+				ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"materiaStrLabel\" name=\"materiaStrLabel\" value=\"Materia\" />"; 
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"searchStrLabel\" name=\"searchStrLabel\" value=\"ISBN, autore o titolo\" />";  
+				ricercaContent = ricercaContent+"<input type=\"button\" id=\"searchBtt\" name=\"searchBtt\" value=\"cerca\" onclick=\"startSearch()\" />"; 
+				ricercaContent = ricercaContent+"</fieldset>";
+				break;
+			case '2':
+				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
+				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Grado</option><option value=\" primo grado -\">Primo grado</option><option value=\" secondo grado -\">Secondo grado</option></select>"; 
+				ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option>"+printMarchio(areaId)+"</select>"; 
+				ricercaContent = ricercaContent+"<input type=\"text\" id=\"materiaStr\" name=\"materiaStr\" value=\"\" onclick=\"if ($(this).val()==$('#materiaStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#materiaStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
+				ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"materiaStrLabel\" name=\"materiaStrLabel\" value=\"Materia\" />";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"searchStrLabel\" name=\"searchStrLabel\" value=\"ISBN, autore o titolo\" />";  
+				ricercaContent = ricercaContent+"<input type=\"button\" id=\"searchBtt\" name=\"searchBtt\" value=\"cerca\" onclick=\"startSearch()\" />"; 
+				ricercaContent = ricercaContent+"</fieldset>";
+				break;
+			case '555':
+				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
+				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Scegli</option><option value=\" varia -\">Varia</option><option value=\" università -\">Università</option></select>"; 
+				ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option><option value=\"32324\">Bruno Mondadori</option><option value=\"69291\">Pearson</option></select>"; 
+				ricercaContent = ricercaContent+"<input type=\"text\" id=\"materiaStr\" name=\"materiaStr\" value=\"\" onclick=\"if ($(this).val()==$('#materiaStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#materiaStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
+				ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"materiaStrLabel\" name=\"materiaStrLabel\" value=\"Materia\" />";
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"searchStrLabel\" name=\"searchStrLabel\" value=\"ISBN, autore o titolo\" />";  
+				ricercaContent = ricercaContent+"<input type=\"button\" id=\"searchBtt\" name=\"searchBtt\" value=\"cerca\" onclick=\"startSearch()\" />"; 
+				ricercaContent = ricercaContent+"</fieldset>";
+				break;
+		}
+			
 		$( "#breadcrumbs" ).html(breadcrumbsContent);
 		$( "#ricerca" ).html(ricercaContent);
-		$( "#searchStr" ).val($('#searchStrLabel').val())
+		$( "#materiaStr" ).val($('#materiaStrLabel').val());
+		$( "#searchStr" ).val($('#searchStrLabel').val());
 		$( "#contenuto" ).html('');
 	}
 	
@@ -218,7 +249,7 @@ $(document).ready(function() {
 		
 		var dPart = dataOra.split("-");
 		
-		var formatDate = dPart[2]+"/"+dPart[1]+"/"+dPart[0]+" "+dPart[3]+":"+dPart[4]+":"+dPart[5];
+		var formatDate = dPart[2]+"/"+dPart[1]+"/"+dPart[0];
 		
 		return formatDate;
 	}
@@ -254,15 +285,30 @@ $(document).ready(function() {
 
 /* Estrazione dati da DB */
 
-	function printMarchio() {
+	function printMarchio(areaId) {
 		
 		var dbPath = getDbPath();
 
 		if (dbPath.exists()) {
 			
     		var db = Titanium.Database.openFile(dbPath);
+  	
+  			var sql = "SELECT DISTINCT opera_marchio_id, opera_marchio FROM catalogo";
+  			
+			switch (areaId) {
+			
+				case '1':
+					sql = sql+" WHERE percorsi_html LIKE 'Scuola primaria%'";
+    				break;
+				case '2':
+					sql = sql+" WHERE percorsi_html LIKE 'Scuola secondaria%'";
+    				break;
+				case '555':
+						
+					break;
+			}
 
-			var rs = db.execute("SELECT DISTINCT opera_marchio_id, opera_marchio FROM catalogo");
+			var rs = db.execute(sql);
 
 			var marchioHtml = "";
 		
@@ -313,9 +359,22 @@ $(document).ready(function() {
     			sql = sql+" volume_isbn LIKE '%"+$("#searchStr").val()+"%'";
     			sql = sql+" OR volume_titolo LIKE '%"+$("#searchStr").val()+"%'";
     			sql = sql+" OR volume_autori LIKE '%"+$("#searchStr").val()+"%'";
-    			sql = sql+" OR percorsi_html LIKE '%"+$("#searchStr").val()+"%'";
     			sql = sql+" )";
     			
+    			isFilter = true;
+    		}
+    		
+    		if ($("#materiaStr").val()!="" & $("#materiaStr").val()!=$("#materiaStrLabel").val()) {
+    			    			
+    			if (isFilter) {
+    				
+    				sql = sql+" AND percorsi_html LIKE '%"+$("#materiaStr").val()+"%'";
+    				
+    			} else {
+    				
+    				sql = sql+" WHERE percorsi_html LIKE '%"+$("#materiaStr").val()+"%'";
+    			}
+
     			isFilter = true;
     		}
     		
@@ -331,6 +390,72 @@ $(document).ready(function() {
     			}
     			
     			isFilter = true;
+    		}
+    		
+    		if (document.getElementById('macrodestinazione')) {
+    			
+    			if ($("#macrodestinazione").val()!="") {
+    				
+    				if (isFilter) {
+    				
+    					sql = sql+" AND percorsi_html LIKE '%"+$("#macrodestinazione").val()+"%'";
+    					
+    				} else {
+    				
+    					sql = sql+" WHERE percorsi_html LIKE '%"+$("#macrodestinazione").val()+"%'";
+    				}
+    			
+    				isFilter = true;
+    			}
+    		}
+    		
+    		if ($("#areaId").val()!="") {
+  	
+				switch ($("#areaId").val()) {
+			
+					case '1':
+
+						if (isFilter) {
+    				
+    						sql = sql+" AND percorsi_html LIKE 'Scuola primaria%'";
+    				
+    					} else {
+    				
+    						sql = sql+" WHERE percorsi_html LIKE 'Scuola primaria%'";
+    					}
+    			
+    					isFilter = true;
+    			
+						break;
+					case '2':
+						
+						if (isFilter) {
+    				
+    						sql = sql+" AND percorsi_html LIKE 'Scuola secondaria%'";
+    				
+    					} else {
+    				
+    						sql = sql+" WHERE percorsi_html LIKE 'Scuola secondaria%'";
+    					}
+    			
+    					isFilter = true;
+    			
+						break;
+					case '555':
+						
+						if (isFilter) {
+    				
+    						sql = sql+" AND percorsi_html LIKE 'Università, varia e professionale%'";
+    				
+    					} else {
+    				
+    						sql = sql+" WHERE percorsi_html LIKE 'Università, varia e professionale%'";
+    					}
+    			
+    					isFilter = true;
+    			
+						break;
+				}
     		}
     		
     		sql = sql+" ORDER BY volume_titolo ASC, volume_sottotitolo ASC, volume_anno_pubblicazione DESC, volume_isbn ASC";

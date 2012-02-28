@@ -4,6 +4,7 @@ body {
 	background-color: white;
 	font-family: Verdana, Geneva, sans-serif;
 	overflow-x: hidden;
+	min-width:905px;
 	min-height:100%;
 }
 
@@ -118,9 +119,12 @@ body {
 #breadcrumbs {
 	display:block;
 	margin:0;
-	padding:10px;
+	padding:0;
+	padding-left:10px;
+	padding-right:10px;
 	border:0;
-	line-height:40px;
+	height:25px;
+	background-color:#F1F1F1;
 }
 
 #breadcrumbs p {
@@ -128,15 +132,20 @@ body {
 	margin:0;
 	padding:0;
 	border:0;
+	font-size:11px;
+	line-height:25px;
 }
 
 #breadcrumbs a {
 	color:#085394;
 	text-decoration:underline;
+	line-height:25px;
 }
 
 #breadcrumbs a:hover {
+	color:#FFF;
 	text-decoration:none;
+	background-color:#666;
 }
 
 /************************************************
@@ -164,18 +173,31 @@ body {
 	margin-left:20px;
 }
 
-#ricerca fieldset select#macrodestinazione_id {
-	margin-left:0;
-}
-
 #ricerca fieldset input {
 	float:left;
 	margin-left:20px;
 }
 
+#ricerca fieldset input.first {
+	margin-left:0;
+}
+
+#ricerca fieldset select.first {
+	margin-left:0;
+}
+
 #ricerca fieldset #searchStr {
-	width:30%;
-	min-width:180px;
+	width:200px;
+	min-width:150px;
+}
+
+#ricerca fieldset #materiaStr {
+	width:150px;
+	min-width:100px;
+}
+
+#ricerca fieldset #searchBtt {
+	float:right;
 }
 
 /************************************************
@@ -408,6 +430,12 @@ p.struttura-titolo {
 	color: #fff;
 	background-color: #ed6b06;
 	width: 100%;
+	height:25px;
+	line-height:25px;
+}
+
+#ultimoAggiornamento {
+	color:#FFF;
 }
 
 /************************************************
