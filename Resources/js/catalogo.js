@@ -192,6 +192,7 @@ $(document).ready(function() {
 			case '1':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
+				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"macrodestinazione\" name=\"macrodestinazione\" value=\"\" />";
 				ricercaContent = ricercaContent+"<select id=\"marchio_id\" class=\"first\"><option value=\"\">Marchio</option>"+printMarchio(areaId)+"</select>"; 
 				ricercaContent = ricercaContent+"<input type=\"text\" id=\"materiaStr\" name=\"materiaStr\" value=\"\" onclick=\"if ($(this).val()==$('#materiaStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#materiaStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />"; 
 				ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
@@ -336,6 +337,8 @@ $(document).ready(function() {
 	
 	function startSearch() {
 		
+		if (($("#searchStr").val()!="" & $("#searchStr").val()!=$("#searchStrLabel").val()) || ($("#materiaStr").val()!="" & $("#materiaStr").val()!=$("#materiaStrLabel").val()) || $("#marchio_id").val()!="" || $("#macrodestinazione").val()!="") {
+			
 		var dbPath = getDbPath();
 
 		if (dbPath.exists()) {
@@ -540,6 +543,11 @@ $(document).ready(function() {
 		} else {
 			
 			alert("Database non trovato");
+		}
+		
+		} else {
+			
+			alert("Selezionare almeno un filtro di ricerca");
 		}
 	}
 	
