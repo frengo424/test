@@ -304,6 +304,7 @@ div.risultatoRigaScheda div.risultatoRigaSx {
 }
 div.risultatoRigaScheda div.risultatoRigaDx {
 	float:left;
+	width:67%;
 	margin:0;
 	margin-left:20px;
 	padding:0;
