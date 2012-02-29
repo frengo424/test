@@ -234,6 +234,7 @@ div.risultatoRiga {
 	text-align:left;
 	border-top: 1px solid;
 	border-top-color: #AAA;
+	cursor:pointer;
 }
 div.risultatoRiga p {
 	display:block;
@@ -274,19 +275,98 @@ div.risultatoRiga img {
 }
 
 
-
 /************************************************
 ** SCHEDA
 ************************************************/
 
-div.risultatoRiga p.risultato-pagine-prezzo {
+div.risultatoRigaScheda {
+	position:relative;
+	display:block;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	background-color: #fff;
+	background-image:url('../img/bgRisultati.jpg');
+	background-position:right;
+	background-repeat:repeat-y;
+	margin-bottom:15px;
+	text-align:left;
+}
+div.risultatoRigaScheda div.risultatoRigaSx {
+	float:left;
+	width:1%;
+	min-width:80px;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+div.risultatoRigaScheda div.risultatoRigaDx {
+	float:left;
+	margin:0;
+	margin-left:20px;
+	padding:0;
+	overflow:hidden;
+}
+div.risultatoRigaScheda p {
+	display:block;
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:12px;
+}
+div.risultatoRigaScheda p.risultato-isbn {
+	margin-top:5px;
+	font-weight:bold;
+}
+div.risultatoRigaScheda p.risultato-autore {
+	margin-top:3px;
+}
+div.risultatoRigaScheda p.risultato-titolo {
+	margin:0px;
+	font-size:18px;
+	font-weight:bold;
+	color:#ED6B06;
+}
+div.risultatoRigaScheda div.risultato-sottotitolo {
+	margin:0;
+	font-size:15px;
+	font-style:italic;
+}
+div.risultatoRigaScheda p.risultato-percorso {
+	margin-top:5px;
+}
+div.risultatoRigaScheda img.risultato-marchio {
+	float:right;
 	margin-top:10px;
-	padding:10px;
-	background-color:#DDD;
+	margin-right:6px;
+}
+
+div.risultatoRigaScheda img {
+	float:left;
+	margin:0;
+	margin-right:10px;
+}
+
+#sezione-peditoriale {
+	display:none;
+}
+
+#sezione-struttura {
+	display:none;
+	padding-left:0;
+	padding-right:0;
 }
 
 #digilibroBtt {
-	margin-top:10px;
+	position:absolute;
+	right:10px;
+	top:60px;
+}
+
+#scuolabookBtt {
+	position:absolute;
+	right:10px;
+	top:100px;
 }
 
 #pannelli {
@@ -301,24 +381,46 @@ p.header {
 	display:block;
 	margin:0;
 	margin-bottom:20px;
-	padding:10px;
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
 	border:0;
-	background-color:#F1F1F1;
+	background-color:#666;
+	font-size:12px;
+	color:#FFF;
 }
 
+p.header-row {
+	display:block;
+	margin:0;
+	margin-bottom:10px;
+	padding:0;
+	padding-left:45px;
+	padding-right:10px;
+	border:0;
+	background-color:#666;
+	font-size:13px;
+	color:#FFF;
+	cursor:pointer;
+	text-align:left;
+	font-weight:bold;
+	line-height:30px;
+	background-image:url('../img/freccia.gif');
+	background-position:top left;
+	background-repeat:no-repeat;
+}
+
+#header-struttura {
+	margin-bottom:0;
+}
 .sezione {
 	display:block;
 	margin:0;
 	padding:10px;
 	padding-top:0;
-	padding-bottom:20px;
+	padding-bottom:30px;
 	border:0;
 	text-align:left;
-}
-
-#sezione-struttura {
-	padding-left:0;
-	padding-right:0;
 }
 
 #box-struttura {
@@ -340,6 +442,9 @@ p.header {
 	overflow:hidden;
 }
 
+.volume-descrizione {
+	padding-top:40px;
+}
 .volume-struttura {
 	float:left;
 	width:23%;
@@ -348,15 +453,29 @@ p.header {
 	margin-top:10px;
 	padding:10px;
 	border:1px solid #666;
+	background-color:#FFF;
+}
+
+.box-struttura-volumi {
+	padding-top:0;
+	padding-bottom:20px;
+	overflow:hidden;
 }
 
 p.struttura-titolo {
+	margin:0;
+	margin-bottom:10px;
 	margin-left:10px;
-	margin-top:0;
-	padding:20px;
+	padding:0;
+	padding-left:10px;
+	padding-right:10px;
+	border:0;
 	background-color:#666;
+	font-size:13px;
 	color:#FFF;
+	text-align:left;
 	font-weight:bold;
+	line-height:30px;
 }
 
 .volume-struttura p {
@@ -398,6 +517,11 @@ p.struttura-titolo {
 
 .volume-struttura p a:hover {
 	text-decoration:none;
+}
+
+p.risultato-pagine-prezzo {
+	margin-top:0;
+	font-weight:bold;
 }
 
 /************************************************

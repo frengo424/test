@@ -558,8 +558,32 @@ $(document).ready(function() {
 			case 'Archimede Edizioni':
 				immagine="ae.jpg";
 				break;
+			case 'Elmedi':
+				immagine="elmedi.jpg";
+				break;
+			case 'Lang':
+				immagine="lang.jpg";
+				break;
+			case 'Lang Pearson Longman':
+				immagine="langlongman.jpg";
+				break;
+			case 'Linx Edizioni':
+				immagine="linx.jpg";
+				break;
+			case 'Paramond':
+				immagine="paramond.jpg";
+				break;
+			case 'Pearson':
+				immagine="peducation.jpg";
+				break;
+			case 'Pearson Longman':
+				immagine="plongman.jpg";
+				break;
+			case 'Thecna!':
+				immagine="thecna.jpg";
+				break;
 		}
-		return "<img class='risultato-marchio' src='img/marchi/"+immagine+"'>";
+		return "<img class='risultato-marchio' src='img/marchi/"+immagine+"' />";
 	}
 	
 	
@@ -605,52 +629,54 @@ $(document).ready(function() {
 				
 				titoloVolume = rs.fieldByName("volume_titolo");
 			
-				schedaHtml = schedaHtml+"<div class=\"risultatoRiga\">";
-				schedaHtml = schedaHtml+"<div class=\"risultatoRigaSx\">";
-				schedaHtml = schedaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
-				schedaHtml = schedaHtml+"<p class=\"risultato-isbn\">ISBN: <a href=\"Javascript:cercaISBN('"+rs.fieldByName("volume_isbn")+"')\">"+rs.fieldByName("volume_isbn")+"</a></p>";
-				if (rs.fieldByName("volume_autori")!="") { schedaHtml = schedaHtml+"<p class=\"risultato-autore\">"+rs.fieldByName("volume_autori")+"</p>"; }
-				schedaHtml = schedaHtml+"<p class=\"risultato-titolo\">"+rs.fieldByName("volume_titolo")+"</p>";
-				if (rs.fieldByName("volume_sottotitolo")!="") { schedaHtml = schedaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_sottotitolo")+"</div>"; }
+				schedaHtml = schedaHtml+"<div class=\"risultatoRigaScheda\">";
 				
 				if (Titanium.Network.online) {
 					
-					schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"location.href='http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"'\" value=\"Scarica il materiale per il docente\" />";
+					schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"window.open('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
+					
+					schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"window.open('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Scuolabook\" />";
 				}
 				
+				if (rs.fieldByName("opera_marchio")!="") { schedaHtml = schedaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
+				
+				schedaHtml = schedaHtml+"<div class=\"risultatoRigaSx\">";
+				schedaHtml = schedaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaDx\">";
+				schedaHtml = schedaHtml+"<p class=\"risultato-isbn\">ISBN: "+rs.fieldByName("volume_isbn")+"</p>";
+				if (rs.fieldByName("volume_autori")!="") { schedaHtml = schedaHtml+"<p class=\"risultato-autore\">"+rs.fieldByName("volume_autori")+"</p>"; }
+				schedaHtml = schedaHtml+"<p class=\"risultato-titolo\">"+rs.fieldByName("volume_titolo")+"</p>";
+				if (rs.fieldByName("volume_sottotitolo")!="") { schedaHtml = schedaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_sottotitolo")+"</div>"; }
 				if (rs.fieldByName("percorsi_html")!="") { schedaHtml = schedaHtml+"<p class=\"risultato-percorso\">"+rs.fieldByName("percorsi_html")+"</p>"; }
-				if (rs.fieldByName("opera_marchio")!="") { schedaHtml = schedaHtml+"<p class=\"risultato-marchio\">"+rs.fieldByName("opera_marchio")+"</p>"; }
-				schedaHtml = schedaHtml+"<p class=\"risultato-pagine-prezzo\">Pagg. "+rs.fieldByName("volume_pagine")+"<br /><br />Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</p>";
+								
+				if (rs.fieldByName("volume_descrizione")!="") {
+					
+					schedaHtml = schedaHtml+"<div class=\"volume-descrizione\">"+rs.fieldByName("volume_descrizione")+"</div>";
+				}
+				
+				schedaHtml = schedaHtml+"<p class=\"risultato-pagine-prezzo\"><br /><br />Pagg. "+rs.fieldByName("volume_pagine")+"<br /><br />Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</p>";
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				
 				schedaHtml = schedaHtml+"<div id=\"pannelli\">";
 				
-				if (rs.fieldByName("volume_descrizione")!="") {
-					
-					schedaHtml = schedaHtml+"<p class=\"header\">Descrizione volume</p>";
-					schedaHtml = schedaHtml+"<div class=\"sezione\">"+rs.fieldByName("volume_descrizione")+"</div>";
-				}
-				
 				if (rs.fieldByName("opera_proposta_sintetica")!="") {
-					
-					schedaHtml = schedaHtml+"<p class=\"header\">Proposta sintetica</p>";
+
 					schedaHtml = schedaHtml+"<div class=\"sezione\">"+rs.fieldByName("opera_proposta_sintetica")+"</div>";
 				}
 				
 				if (rs.fieldByName("opera_proposta_editoriale")!="") {
 					
-					schedaHtml = schedaHtml+"<p class=\"header\">Proposta editoriale</p>";
-					schedaHtml = schedaHtml+"<div class=\"sezione\">"+rs.fieldByName("opera_proposta_editoriale")+"</div>";
+					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-peditoriale').slideToggle('fast');\">Proposta editoriale</p>";
+					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-peditoriale\">"+rs.fieldByName("opera_proposta_editoriale")+"</div>";
 				}
 				
 				schedaHtml = schedaHtml+"</div>";
 				
 				if (rs.fieldByName("struttura_html")!="") {
 					
-					schedaHtml = schedaHtml+"<p class=\"header\">Struttura</p>";
+					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');\" id=\"header-struttura\">Struttura</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+rs.fieldByName("struttura_html")+"</div>";
 				}
 			}
@@ -665,7 +691,8 @@ $(document).ready(function() {
 		
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
 			$( "#contenuto" ).html(schedaHtml);
-
+			$( "#contenuto" ).scrollTo(0,0);
+			
 		} else {
 			
 			alert("Database non trovato");
