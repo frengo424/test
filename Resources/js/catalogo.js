@@ -673,7 +673,7 @@ $(document).ready(function() {
 					
 					schedaHtml = schedaHtml+"Pagg. "+rs.fieldByName("volume_pagine")+"<br />";
 				}
-				schedaHtml = schedaHtml+"Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</div>";
+				schedaHtml = schedaHtml+"Euro "+decimalSeparator(rs.fieldByName("volume_prezzo").toFixed(2))+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				
@@ -757,6 +757,10 @@ $(document).ready(function() {
 	}	
 
 	function getDbPath () {
-		
 		return Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'Resources/catalogo.sqlite');
+	}
+
+	function decimalSeparator(numero){
+		var s = numero.replace(/,/g, '#').replace(/\./g, ',').replace(/#/g, '.'); //inverte il punto con la virgola, se presenti
+		return s
 	}
