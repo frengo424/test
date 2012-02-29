@@ -546,11 +546,13 @@ p.struttura-titolo {
 	float:right;
 	clear:both;
 	margin-top:5px;
+	margin-right:6px;
 }
 
 #scheda-btt #scuolabookBtt {
 	float:right;
 	clear:both;
+	margin-right:6px;
 }
 
 
