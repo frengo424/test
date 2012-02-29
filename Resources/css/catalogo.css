@@ -337,11 +337,6 @@ div.risultatoRigaScheda div.risultato-sottotitolo {
 div.risultatoRigaScheda p.risultato-percorso {
 	margin-top:5px;
 }
-div.risultatoRigaScheda img.risultato-marchio {
-	float:right;
-	margin-top:10px;
-	margin-right:6px;
-}
 
 div.risultatoRigaScheda img {
 	float:left;
@@ -357,18 +352,6 @@ div.risultatoRigaScheda img {
 	display:none;
 	padding-left:0;
 	padding-right:0;
-}
-
-#digilibroBtt {
-	position:absolute;
-	right:10px;
-	top:60px;
-}
-
-#scuolabookBtt {
-	position:absolute;
-	right:10px;
-	top:100px;
 }
 
 #pannelli {
@@ -397,7 +380,7 @@ p.header-row {
 	margin:0;
 	margin-bottom:10px;
 	padding:0;
-	padding-left:45px;
+	padding-left:40px;
 	padding-right:10px;
 	border:0;
 	background-color:#666;
@@ -411,7 +394,25 @@ p.header-row {
 	background-position:top left;
 	background-repeat:no-repeat;
 }
-
+p.header-row-expanded {
+	display:block;
+	margin:0;
+	margin-bottom:10px;
+	padding:0;
+	padding-left:40px;
+	padding-right:10px;
+	border:0;
+	background-color:#666;
+	font-size:13px;
+	color:#FFF;
+	cursor:pointer;
+	text-align:left;
+	font-weight:bold;
+	line-height:30px;
+	background-image:url('../img/frecciaBottom.gif');
+	background-position:top left;
+	background-repeat:no-repeat;
+}
 #header-struttura {
 	margin-bottom:0;
 }
@@ -446,7 +447,6 @@ p.header-row {
 
 .volume-descrizione {
 	margin-top:18px;
-	line-height:5px;
 }
 .risultato-pagine-prezzo {
 	font-size:12px;
@@ -478,9 +478,9 @@ p.struttura-titolo {
 	padding-left:10px;
 	padding-right:10px;
 	border:0;
-	background-color:#666;
+	background-color:#D6D6D6;
 	font-size:13px;
-	color:#FFF;
+	color:#000;
 	text-align:left;
 	font-weight:bold;
 	line-height:30px;
@@ -525,6 +525,34 @@ p.struttura-titolo {
 
 .volume-struttura p a:hover {
 	text-decoration:none;
+}
+
+#scheda-btt {
+	position:absolute;
+	top:0;
+	right:0;
+	overflow:hidden;
+	text-align:right;
+}
+#scheda-btt img.risultato-marchio {
+	float:right;
+	clear:both;
+	margin-top:10px;
+	margin-right:6px;
+	margin-bottom:10px;
+}
+
+#scheda-btt #digilibroBtt {
+	float:right;
+	clear:both;
+	margin-top:5px;
+	margin-right:6px;
+}
+
+#scheda-btt #scuolabookBtt {
+	float:right;
+	clear:both;
+	margin-right:6px;
 }
 
 
@@ -592,4 +620,13 @@ p.struttura-titolo {
 
 #loader-img {
 	margin-top:40px;
+}
+
+
+/************************************************
+** Altro
+************************************************/
+
+span, p, #contenuto {
+	-webkit-user-select:text;
 }
