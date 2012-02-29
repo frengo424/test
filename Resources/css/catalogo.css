@@ -208,6 +208,8 @@ body {
 #ricerca fieldset #searchBtt {
 	float:right;
 }
+
+
 /************************************************
 ** Risultato Ricerca
 ************************************************/
@@ -443,7 +445,13 @@ p.header-row {
 }
 
 .volume-descrizione {
-	padding-top:40px;
+	margin-top:18px;
+	line-height:5px;
+}
+.risultato-pagine-prezzo {
+	font-size:12px;
+	font-weight:bold;
+	margin-top:7px;
 }
 .volume-struttura {
 	float:left;
@@ -519,10 +527,6 @@ p.struttura-titolo {
 	text-decoration:none;
 }
 
-p.risultato-pagine-prezzo {
-	margin-top:0;
-	font-weight:bold;
-}
 
 /************************************************
 ** FOOTER

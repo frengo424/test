@@ -655,7 +655,7 @@ $(document).ready(function() {
 					schedaHtml = schedaHtml+"<div class=\"volume-descrizione\">"+rs.fieldByName("volume_descrizione")+"</div>";
 				}
 				
-				schedaHtml = schedaHtml+"<p class=\"risultato-pagine-prezzo\"><br /><br />Pagg. "+rs.fieldByName("volume_pagine")+"<br /><br />Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</p>";
+				schedaHtml = schedaHtml+"<div class=\"risultato-pagine-prezzo\">Pagg. "+rs.fieldByName("volume_pagine")+"<br />Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				
@@ -676,7 +676,7 @@ $(document).ready(function() {
 				
 				if (rs.fieldByName("struttura_html")!="") {
 					
-					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');\" id=\"header-struttura\">Struttura</p>";
+					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');\" id=\"header-struttura\">Struttura dell'offerta</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+rs.fieldByName("struttura_html")+"</div>";
 				}
 			}
