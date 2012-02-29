@@ -633,9 +633,9 @@ $(document).ready(function() {
 				
 				if (Titanium.Network.online) {
 					
-					schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"window.open('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
+					schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
 					
-					schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"window.open('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Scuolabook\" />";
+					schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
 				}
 				
 				if (rs.fieldByName("opera_marchio")!="") { schedaHtml = schedaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
