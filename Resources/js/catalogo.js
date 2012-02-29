@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 			$.get('http://listino.pearsonitalia.it/sqliteUpdater.action.php?lastupdate='+dataOra, function(data) {
 				
-				$("#loader-action").html('Download terminato. Installazione aggiornamento');
+				$("#loader-action").html('Download terminato. Installazione aggiornamento...');
 				
 				if(data!="") {
 				

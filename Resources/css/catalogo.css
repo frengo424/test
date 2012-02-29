@@ -478,7 +478,8 @@ p.struttura-titolo {
 	padding-left:10px;
 	padding-right:10px;
 	border:0;
-	background-color:#D6D6D6;
+/*	background-color:#D6D6D6;*/
+	background-color:#BBB;
 	font-size:13px;
 	color:#000;
 	text-align:left;
