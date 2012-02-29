@@ -631,6 +631,10 @@ $(document).ready(function() {
 			
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaScheda\">";
 				
+				schedaHtml = schedaHtml+"<div id=\"scheda-btt\">";
+				
+				if (rs.fieldByName("opera_marchio")!="") { schedaHtml = schedaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
+				
 				if (Titanium.Network.online) {
 					
 					schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
@@ -638,7 +642,7 @@ $(document).ready(function() {
 					schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
 				}
 				
-				if (rs.fieldByName("opera_marchio")!="") { schedaHtml = schedaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
+				schedaHtml = schedaHtml+"</div>";
 				
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaSx\">";
 				schedaHtml = schedaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
@@ -652,10 +656,16 @@ $(document).ready(function() {
 								
 				if (rs.fieldByName("volume_descrizione")!="") {
 					
-					schedaHtml = schedaHtml+"<div class=\"volume-descrizione\">"+rs.fieldByName("volume_descrizione")+"</div>";
+					schedaHtml = schedaHtml+"<div class=\"volume-descrizione\">"+rs.fieldByName("volume_descrizione").replace(/<br \/><br \/>/gi, '<br />')+"</div>";
 				}
 				
-				schedaHtml = schedaHtml+"<div class=\"risultato-pagine-prezzo\">Pagg. "+rs.fieldByName("volume_pagine")+"<br />Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</div>";
+				schedaHtml = schedaHtml+"<div class=\"risultato-pagine-prezzo\">";
+				
+				if (rs.fieldByName("volume_pagine")!=0) {
+					
+					schedaHtml = schedaHtml+"Pagg. "+rs.fieldByName("volume_pagine")+"<br />";
+				}
+				schedaHtml = schedaHtml+"Euro "+rs.fieldByName("volume_prezzo").toFixed(2)+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				
@@ -668,15 +678,15 @@ $(document).ready(function() {
 				
 				if (rs.fieldByName("opera_proposta_editoriale")!="") {
 					
-					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-peditoriale').slideToggle('fast');\">Proposta editoriale</p>";
-					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-peditoriale\">"+rs.fieldByName("opera_proposta_editoriale")+"</div>";
+					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-peditoriale').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\">Proposta editoriale</p>";
+					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-peditoriale\">"+rs.fieldByName("opera_proposta_editoriale").replace(/<a/gi, "<a target='_blank''")+"</div>";
 				}
 				
 				schedaHtml = schedaHtml+"</div>";
 				
 				if (rs.fieldByName("struttura_html")!="") {
 					
-					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');\" id=\"header-struttura\">Struttura dell'offerta</p>";
+					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+rs.fieldByName("struttura_html")+"</div>";
 				}
 			}
@@ -691,14 +701,18 @@ $(document).ready(function() {
 		
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
 			$( "#contenuto" ).html(schedaHtml);
-			$( "#contenuto" ).scrollTo(0,0);
 			
+			$(".struttura-titolo:contains('insegnante')").css("color", "#FFFFFF");
+			$(".struttura-titolo:contains('insegnante')").css("background-color", "#ed6b06");
+			
+			$( "#contenuto" ).scrollTo(0,0);
+
 		} else {
 			
 			alert("Database non trovato");
 		}
 	}
-		
+	
 	function getLastUpdate() {
 		
 		var dbPath = getDbPath();
