@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 		} else {
 			
-			alert("Per effettuare un aggiornamento e' necessario essere connessi ad Internet");
+			alert("Per effettuare un aggiornamento è necessario essere connessi a Internet");
 		}
 	}
 	
