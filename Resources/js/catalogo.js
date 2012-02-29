@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 		} else {
 			
-			alert("Per effettuare un aggiornamento è necessario essere connessi a Internet");
+			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
 		}
 	}
 	
@@ -151,7 +151,7 @@ $(document).ready(function() {
 
 				} else {
 					
-					alert("Errore durante l'aggiornamento");
+					alert("Errore durante l'aggiornamento del catalogo, riprovare più tardi.");
 				}
 			});
 
@@ -159,7 +159,7 @@ $(document).ready(function() {
 		
 		} else {
 			
-			alert("Per effettuare un aggiornamento e' necessario essere connessi ad Internet");
+			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
 		}
 	}
 
@@ -546,8 +546,8 @@ $(document).ready(function() {
 		}
 		
 		} else {
-			
-			alert("Selezionare almeno un filtro di ricerca");
+			//Qui dovremmo forse aprire un pop up!
+			alert("Per effettuare una ricerca è necessario selezionare almeno un criterio di ricerca valido.");
 		}
 	}
 	
