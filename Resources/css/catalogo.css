@@ -488,6 +488,10 @@ p.struttura-titolo {
 	line-height:30px;
 }
 
+.struttura-sottotitolo {
+	display:none;
+}
+
 .volume-struttura p {
 	display:block;
 	margin:0;

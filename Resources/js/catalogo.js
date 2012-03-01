@@ -74,6 +74,16 @@ $(document).ready(function() {
 			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
 		}
 	}
+
+	function chiediUpdate(){
+	
+		verificaUpdate();
+		
+		if ($("#recordNumber").val()==0) {
+			
+			alert("Non e' stato trovato alcun aggiornamento");
+		}
+	}
 	
 	function aggiorna() {
 		
@@ -612,6 +622,7 @@ $(document).ready(function() {
 			var imgHexString = "";
 			var imgContentType = "";
 			var titoloVolume = "";
+			var isbnVolume = "";
 
 			if(rs.rowCount()>0){
 			
@@ -636,7 +647,8 @@ $(document).ready(function() {
 				}
 				
 				titoloVolume = rs.fieldByName("volume_titolo");
-			
+				isbnVolume = rs.fieldByName("volume_isbn");
+				
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaScheda\">";
 				
 				schedaHtml = schedaHtml+"<div id=\"scheda-btt\">";
@@ -645,9 +657,11 @@ $(document).ready(function() {
 				
 				if (Titanium.Network.online) {
 					
-					schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
-					
-					schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
+					if ($("#areaId").val()!=555) {
+						
+						schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
+						schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
+					}
 				}
 				
 				schedaHtml = schedaHtml+"</div>";
@@ -673,7 +687,13 @@ $(document).ready(function() {
 					
 					schedaHtml = schedaHtml+"Pagg. "+rs.fieldByName("volume_pagine")+"<br />";
 				}
-				schedaHtml = schedaHtml+"Euro "+decimalSeparator(rs.fieldByName("volume_prezzo").toFixed(2))+"</div>";
+				
+				if (rs.fieldByName("volume_prezzo").toFixed(2)!="0.00") {
+					
+					schedaHtml = schedaHtml+"Euro "+decimalSeparator(rs.fieldByName("volume_prezzo").toFixed(2));
+				}
+				
+				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"</div>";
 				
@@ -686,13 +706,23 @@ $(document).ready(function() {
 				
 				if (rs.fieldByName("opera_proposta_editoriale")!="") {
 					
-					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-peditoriale').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\">Proposta editoriale</p>";
-					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-peditoriale\">"+rs.fieldByName("opera_proposta_editoriale").replace(/<a/gi, "<a target='_blank''")+"</div>";
+					if ($("#areaId").val()!=555) {
+						
+						schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-peditoriale').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\">Proposta editoriale</p>";
+					}
+					schedaHtml = schedaHtml+"<div class=\"sezione\"";
+					
+					if ($("#areaId").val()!=555) {
+						
+						schedaHtml = schedaHtml+" id=\"sezione-peditoriale\"";
+					}
+					
+					schedaHtml = schedaHtml+">"+rs.fieldByName("opera_proposta_editoriale").replace(/<a/gi, "<a target='_blank''")+"</div>";
 				}
 				
 				schedaHtml = schedaHtml+"</div>";
 				
-				if (rs.fieldByName("struttura_html")!="") {
+				if (rs.fieldByName("struttura_html")!="" & $("#areaId").val()!=555) {
 					
 					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+decimalSeparator(rs.fieldByName("struttura_html"))+"</div>";
@@ -702,16 +732,44 @@ $(document).ready(function() {
 			rs.close();
 		
 			db.close();
-		
+
 			var breadcrumbsContent = "<p><a href=\"Javascript:backHome()\">Inizio</a> > <a href=\"Javascript:switchArea('"+$("#areaId").val()+"')\">"+getAreaName($("#areaId").val())+"</a> > <a href=\"Javascript:startSearch()\">Risultato ricerca</a>";
 			if (titoloVolume!="") { breadcrumbsContent = breadcrumbsContent+" > "+titoloVolume; }
 			breadcrumbsContent = breadcrumbsContent+"</p>";
-		
+
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
+			$( "#breadcrumbs" ).css("color","#888888");
 			$( "#contenuto" ).html(schedaHtml);
 			
 			$(".struttura-titolo:contains('insegnante')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('insegnante')").css("background-color", "#ed6b06");
+			
+			if ($("#sezione-struttura a").length>0) {
+
+				var contenutoStruttura = $("#sezione-struttura").html();
+				
+				var db = Titanium.Database.openFile(dbPath);
+    		
+				for (i=0;i<$("#sezione-struttura a").length;i++) {
+					
+					isbn = $("#sezione-struttura a").get(i).innerHTML;
+
+					var sql = "SELECT volume_id FROM catalogo WHERE volume_isbn='"+isbn+"'";
+    		
+    				var rs = db.execute(sql);
+    				
+					if(rs.rowCount()==0 || isbn==isbnVolume){
+
+						contenutoStruttura = contenutoStruttura.replace("<a href=\"javascript:cercaISBN('"+isbn+"');\">"+isbn+"</a>",isbn);
+					}
+					
+					rs.close();
+				}
+				
+				db.close();
+				
+				$("#sezione-struttura").html(contenutoStruttura);
+			}
 			
 			$( "#contenuto" ).scrollTop(0);
 
