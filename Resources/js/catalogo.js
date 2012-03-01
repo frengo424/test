@@ -713,7 +713,7 @@ $(document).ready(function() {
 			$(".struttura-titolo:contains('insegnante')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('insegnante')").css("background-color", "#ed6b06");
 			
-			$( "#contenuto" ).scrollTo(0,0);
+			$( "#contenuto" ).scrollTop(0);
 
 		} else {
 			
