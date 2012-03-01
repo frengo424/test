@@ -695,7 +695,7 @@ $(document).ready(function() {
 				if (rs.fieldByName("struttura_html")!="") {
 					
 					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
-					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+rs.fieldByName("struttura_html")+"</div>";
+					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+decimalSeparator(rs.fieldByName("struttura_html"))+"</div>";
 				}
 			}
 
@@ -761,6 +761,6 @@ $(document).ready(function() {
 	}
 
 	function decimalSeparator(numero){
-		var s = numero.replace(/,/g, '#').replace(/\./g, ',').replace(/#/g, '.'); //inverte il punto con la virgola, se presenti
+		var s = numero.replace(/([0-9]+),([0-9]+)/g, '$1#$2').replace(/([0-9]+)\.([0-9]+)/g, '$1,$2').replace(/([0-9]+)#([0-9]+)/g, '$1.$2'); //inverte il punto con la virgola, se presenti
 		return s
 	}
