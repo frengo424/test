@@ -1,1 +1,13 @@
-Place your license text here.  This file will be incorporated with your app at package time.
+Contratto di Licenza con singoli utenti
+
+IMPORTANTE: LEGGERE CON ATTENZIONE
+Il presente Contratto costituisce un accordo vincolante tra l'utente o acquirente e Pearson Italia spa. Ai sensi del presente Contratto, qualsiasi supporto software o materiale stampato di accompagnamento deve essere utilizzato - e qualsiasi attivita' consentita deve essere eseguita - in conformita' alle condizioni specificate nel presente Contratto. Qualora l'utente non accetti tutti i termini e le condizioni del presente Contratto, sara' tenuto a restituire prontamente l'intera pubblicazione.
+
+E' CONSENTITO
+Utilizzare (installare in modo temporaneo o permanente) una sola copia del software in un singolo computer per volta. Se il computer e' connesso a una rete. Utilizzare il software a scopi didattici, a condizione che sia installato in un solo computer. Trasferire il software da un computer a un altro, a condizione che venga utilizzato in un solo computer per volta. Stampare singole parti della schermata a scopi didattici.
+
+NON E' CONSENTITO
+Concedere in locazione, in leasing o vendere il software o qualsiasi parte della pubblicazione. Copiare qualsiasi parte della documentazione, salvo quanto diversamente indicato nel Contratto. Effettuare copie del software, anche nel caso di copie di archivio. Modificare a livello di programmazione, decompilare o disassemblare il software o creare un prodotto derivato dai contenuti del database o da qualsiasi software incluso. Utilizzare il software in piu' computer contemporaneamente. Installare il software in un qualsiasi computer o server di rete consentendo l'eventuale accesso ad altri computer della rete. Utilizzare materiale o software speciale contenuto nel disco con altri prodotti o materiale software, ad eccezione di quanto indicato nella sezione "E' CONSENTITO". Utilizzare il software in modi non specificati sopra senza previa approvazione scritta da parte di Pearson Italia spa. Stampare piu' pagine per volta.
+
+UNA SINGOLA COPIA
+La Licenza fornita e' relativa a una sola copia del software. PEARSON ITALIA SPA SI RISERVA IL DIRITTO DI RISOLVERE IL PRESENTE CONTRATTO MEDIANTE COMUNICAZIONE SCRITTA E DI AVVIARE AZIONI LEGALI PER EVENTUALI DANNI CAUSATI A PEARSON ITALIA SPA IN CASO DI INADEMPIMENTO CONTRATTUALE. Il software e' di proprieta' di Pearson Italia spa. L'utente e' proprietario esclusivamente del disco nel quale il software viene fornito.
