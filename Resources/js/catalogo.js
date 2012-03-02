@@ -473,8 +473,7 @@ $(document).ready(function() {
     		}
     		
     		sql = sql+" ORDER BY UPPER(volume_titolo) ASC, UPPER(volume_sottotitolo) ASC, CAST(volume_anno_pubblicazione AS INTEGER) DESC, UPPER(volume_isbn) ASC";
-    		//sql = sql+" ORDER BY CAST(volume_anno_pubblicazione AS INTEGER) DESC, volume_isbn ASC";
-
+    		
 			var rs = db.execute(sql);
 
 			var risultatoRicercaHtml = "";
@@ -533,7 +532,7 @@ $(document).ready(function() {
 				if (rs.fieldByName("volume_autori")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-autore\">"+rs.fieldByName("volume_autori")+"</p>"; }
 				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-titolo\">"+rs.fieldByName("volume_titolo")+"</p>";
 				if (rs.fieldByName("volume_sottotitolo")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_sottotitolo")+"</div>"; }
-			risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_anno_pubblicazione")+"</div>";
+				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_anno_pubblicazione")+"</div>";
 				if (rs.fieldByName("percorsi_html")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-percorso\">"+rs.fieldByName("percorsi_html")+"</p>"; }
 				//risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
 				//risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaDx\">";
