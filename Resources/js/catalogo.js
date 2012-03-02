@@ -614,7 +614,7 @@ $(document).ready(function() {
 			
     		var db = Titanium.Database.openFile(dbPath);
     		
-    		var sql = "SELECT volume_id, volume_isbn, volume_autori, volume_titolo, volume_sottotitolo, volume_descrizione, volume_pagine, volume_prezzo, opera_id, opera_marchio, opera_proposta_sintetica, opera_proposta_editoriale, struttura_html, percorsi_html, hex_copertina FROM catalogo WHERE volume_isbn='"+isbn+"'";
+    		var sql = "SELECT volume_id, volume_isbn, volume_autori, volume_titolo, volume_sottotitolo, volume_descrizione, volume_pagine, volume_prezzo, volume_codice_digilibro, opera_id, opera_marchio, opera_proposta_sintetica, opera_proposta_editoriale, struttura_html, percorsi_html, hex_copertina FROM catalogo WHERE volume_isbn='"+isbn+"'";
     		
     		var rs = db.execute(sql);
 
@@ -658,10 +658,15 @@ $(document).ready(function() {
 				
 				if (Titanium.Network.online) {
 					
-					if ($("#areaId").val()!=555) {
+					if ($("#areaId").val()!=555 & rs.fieldByName("volume_codice_digilibro")=="x") {
+						
+						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/marchi/digilibro.png\" />";
 						
 						schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
+						
+						/* Il pulsante Sculabook finirà nella struttura 'versione online scaricabile da internet'
 						schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
+						*/
 					}
 				}
 				

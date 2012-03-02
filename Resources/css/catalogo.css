@@ -547,6 +547,13 @@ p.struttura-titolo {
 	margin-right:6px;
 	margin-bottom:10px;
 }
+#scheda-btt img#digilibro-logo {
+	float:right;
+	clear:both;
+	margin-top:10px;
+	margin-right:6px;
+	margin-bottom:10px;
+}
 
 #scheda-btt #digilibroBtt {
 	float:right;
