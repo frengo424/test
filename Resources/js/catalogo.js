@@ -660,7 +660,7 @@ $(document).ready(function() {
 					
 					if ($("#areaId").val()!=555 & rs.fieldByName("volume_codice_digilibro")=="x") {
 						
-						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/marchi/digilibro.png\" />";
+						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/digilibro.png\" />";
 						
 						schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
 						
