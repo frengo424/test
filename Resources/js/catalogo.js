@@ -201,6 +201,7 @@ $(document).ready(function() {
 			
 			case '1':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"macrodestinazione\" name=\"macrodestinazione\" value=\"\" />";
 				ricercaContent = ricercaContent+"<select id=\"marchio_id\" class=\"first\"><option value=\"\">Marchio</option>"+printMarchio(areaId)+"</select>"; 
@@ -213,6 +214,7 @@ $(document).ready(function() {
 				break;
 			case '2':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Grado</option><option value=\" primo grado -\">Primo grado</option><option value=\" secondo grado -\">Secondo grado</option></select>"; 
 				ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option>"+printMarchio(areaId)+"</select>"; 
@@ -225,6 +227,7 @@ $(document).ready(function() {
 				break;
 			case '555':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Scegli</option><option value=\" varia -\">Varia</option><option value=\" università -\">Università</option></select>"; 
 				ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option><option value=\"32324\">Bruno Mondadori</option><option value=\"69291\">Pearson</option></select>"; 
@@ -550,6 +553,7 @@ $(document).ready(function() {
 		
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
 			$( "#contenuto" ).html(risultatoRicercaHtml);
+			$( "#strato" ).show();
 
 		} else {
 			
@@ -660,7 +664,7 @@ $(document).ready(function() {
 					
 					if ($("#areaId").val()!=555 & rs.fieldByName("volume_codice_digilibro")=="x") {
 						
-						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/digilibro.png\" />";
+						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/digilibro.png\" />{ETEXT-LOGO}";
 						
 						schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
 						
@@ -740,16 +744,30 @@ $(document).ready(function() {
 			db.close();
 
 			var breadcrumbsContent = "<p><a href=\"Javascript:backHome()\">Inizio</a> > <a href=\"Javascript:switchArea('"+$("#areaId").val()+"')\">"+getAreaName($("#areaId").val())+"</a> > <a href=\"Javascript:startSearch()\">Risultato ricerca</a>";
-			if (titoloVolume!="") { breadcrumbsContent = breadcrumbsContent+" > "+titoloVolume; }
+			if (titoloVolume!="") { breadcrumbsContent = breadcrumbsContent+" > "+titoloVolume.replace(/<br \/>/gi, ' '); }
 			breadcrumbsContent = breadcrumbsContent+"</p>";
 
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
 			$( "#breadcrumbs" ).css("color","#888888");
 			$( "#contenuto" ).html(schedaHtml);
 			
+			var finestraBolliniHtml = $("#scheda-btt").html();
+			
+			if ($(".struttura-titolo:contains('scaricabile')").length>0) {
+				
+				$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}","<img id=\"etext-logo\" src=\"img/etext.png\" />"));
+				
+			} else {
+				
+				$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}",""));
+			}
+			
 			$(".struttura-titolo:contains('insegnante')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('insegnante')").css("background-color", "#ed6b06");
 			
+			$(".struttura-titolo:contains('scaricabile')").css("color", "#FFFFFF");
+			$(".struttura-titolo:contains('scaricabile')").css("background-color", "#364395");
+
 			if ($("#sezione-struttura a").length>0) {
 
 				var contenutoStruttura = $("#sezione-struttura").html();

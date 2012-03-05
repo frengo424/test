@@ -209,6 +209,17 @@ body {
 	float:right;
 }
 
+#strato {
+	position:absolute;
+	top:79px;
+	left:11px;
+	display:none;
+	width:98%;
+	height:55px;
+	background-image:url('../img/bkStrato.png');
+	z-index:10000;
+	cursor:pointer;
+ }
 
 /************************************************
 ** Risultato Ricerca
@@ -549,12 +560,19 @@ p.struttura-titolo {
 }
 #scheda-btt img#digilibro-logo {
 	float:right;
-	clear:both;
+	/*clear:both;*/
+clear:right;
 	margin-top:10px;
 	margin-right:6px;
 	margin-bottom:10px;
 }
-
+#scheda-btt img#etext-logo {
+	float:right;
+	/*clear:both;*/
+	margin-top:10px;
+	margin-right:6px;
+	margin-bottom:10px;
+}
 #scheda-btt #digilibroBtt {
 	float:right;
 	clear:both;
