@@ -535,7 +535,7 @@ $(document).ready(function() {
 				if (rs.fieldByName("volume_autori")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-autore\">"+rs.fieldByName("volume_autori")+"</p>"; }
 				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-titolo\">"+rs.fieldByName("volume_titolo")+"</p>";
 				if (rs.fieldByName("volume_sottotitolo")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_sottotitolo")+"</div>"; }
-				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_anno_pubblicazione")+"</div>";
+				//risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultato-sottotitolo\">"+rs.fieldByName("volume_anno_pubblicazione")+"</div>";
 				if (rs.fieldByName("percorsi_html")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-percorso\">"+rs.fieldByName("percorsi_html")+"</p>"; }
 				//risultatoRicercaHtml = risultatoRicercaHtml+"</div>";
 				//risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaDx\">";
@@ -660,17 +660,20 @@ $(document).ready(function() {
 				
 				if (rs.fieldByName("opera_marchio")!="") { schedaHtml = schedaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
 				
-				if (Titanium.Network.online) {
+				
 					
-					if ($("#areaId").val()!=555 & rs.fieldByName("volume_codice_digilibro")=="x") {
+				if ($("#areaId").val()!=555 & rs.fieldByName("volume_codice_digilibro")=="x") {
+					if (Titanium.Network.online) {
+						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/digilibro.png\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" />{ETEXT-LOGO}";
 						
+						//schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
+						
+						//if ($(".struttura-titolo:contains('scaricabile')").length>0) {
+							// Il pulsante Sculabook finirà nella struttura 'versione online scaricabile da internet'?
+							//schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
+						//}
+					} else {
 						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/digilibro.png\" />{ETEXT-LOGO}";
-						
-						schedaHtml = schedaHtml+"<input type=\"button\" id=\"digilibroBtt\" name=\"digilibroBtt\" onclick=\"Titanium.Platform.openURL('http://digilibro.pearson.it/dettaglio.php?idVolume="+rs.fieldByName("volume_id")+"')\" value=\"Materiale per il docente\" />";
-						
-						/* Il pulsante Sculabook finirà nella struttura 'versione online scaricabile da internet'
-						schedaHtml = schedaHtml+"<input type=\"button\" id=\"scuolabookBtt\" name=\"scuolabookBtt\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" value=\"Scuolabook\" />";
-						*/
 					}
 				}
 				
@@ -739,10 +742,6 @@ $(document).ready(function() {
 				}
 			}
 
-			rs.close();
-		
-			db.close();
-
 			var breadcrumbsContent = "<p><a href=\"Javascript:backHome()\">Inizio</a> > <a href=\"Javascript:switchArea('"+$("#areaId").val()+"')\">"+getAreaName($("#areaId").val())+"</a> > <a href=\"Javascript:startSearch()\">Risultato ricerca</a>";
 			if (titoloVolume!="") { breadcrumbsContent = breadcrumbsContent+" > "+titoloVolume.replace(/<br \/>/gi, ' '); }
 			breadcrumbsContent = breadcrumbsContent+"</p>";
@@ -754,9 +753,11 @@ $(document).ready(function() {
 			var finestraBolliniHtml = $("#scheda-btt").html();
 			
 			if ($(".struttura-titolo:contains('scaricabile')").length>0) {
-				
-				$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}","<img id=\"etext-logo\" src=\"img/etext.png\" />"));
-				
+				if (Titanium.Network.online && rs.fieldByName("volume_titolo").indexOf("ersione online") != -1) { //verifica che lo stesso volume sia presente su scuolabook!
+					$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}","<img id=\"etext-logo\" src=\"img/etext.png\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" />"));
+				} else {
+					$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}","<img id=\"etext-logo\" src=\"img/etext.png\" />"));					
+				}
 			} else {
 				
 				$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}",""));
@@ -767,6 +768,11 @@ $(document).ready(function() {
 			
 			$(".struttura-titolo:contains('scaricabile')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('scaricabile')").css("background-color", "#364395");
+
+
+			rs.close();
+			db.close();
+
 
 			if ($("#sezione-struttura a").length>0) {
 
