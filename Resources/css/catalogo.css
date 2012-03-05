@@ -47,30 +47,24 @@ body {
 	text-align:center;
 	overflow-x: auto;
 }
-
 #contenuto h1 {
 	color: #ed6b06;
 }
-
 #contenuto h2 {
 }
-
 #finestraAggiornamento {
 	display:none;
 }
-
 #interrompi {
 	position:absolute;
 	bottom:10px;
 	left:10px;
 }
-
 #aggiorna {
 	position:absolute;
 	bottom:10px;
 	right:10px;
 }
-
 #sceltaScuola {
 	list-style:none;
 	margin:0;
@@ -94,7 +88,6 @@ body {
 	text-decoration:none;
 	padding-top:208px;
 }
-
 #sceltaScuola a:hover {
 	background-color:#ed6b06;
 	color:#ffffff;
@@ -102,7 +95,6 @@ body {
 	border-left:3px solid #000000;
 	border-right:3px solid #000000;
 }
-
 #scuolaPrimaria {
 	background-image:url('../img/primary.jpg');
 	background-repeat:no-repeat;
@@ -158,6 +150,7 @@ body {
 	background-color:#666;
 }
 
+
 /************************************************
 ** Ricerca
 ************************************************/
@@ -169,7 +162,6 @@ body {
 	border:0;
 	overflow:hidden;
 }
-
 #ricerca fieldset {
 	display:block;
 	margin:0;
@@ -212,24 +204,26 @@ body {
 #strato {
 	position:absolute;
 	top:79px;
-	left:11px;
+	left:10px;
+	right:10px;
 	display:none;
-	width:98%;
-	height:55px;
+	height:52px;
 	background-image:url('../img/bkStrato.png');
 	z-index:10000;
 	cursor:pointer;
+	border: 1px solid;
+	border-color:red;
  }
 
 #close-icon {
 	float:right;
-	margin:10px;
+	margin:6px;
 	margin-left:0;
 	cursor:pointer;
 }
 #strato p {
 	float:right;
-	margin:10px;
+	margin:6px;
 	color:#C00;
 	cursor:pointer;
 	line-height:16px;
