@@ -221,6 +221,21 @@ body {
 	cursor:pointer;
  }
 
+#close-icon {
+	float:right;
+	margin:10px;
+	margin-left:0;
+	cursor:pointer;
+}
+#strato p {
+	float:right;
+	margin:10px;
+	color:#C00;
+	cursor:pointer;
+	line-height:16px;
+	font-size:11px;
+}
+
 /************************************************
 ** Risultato Ricerca
 ************************************************/
