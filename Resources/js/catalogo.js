@@ -110,7 +110,7 @@ $(document).ready(function() {
 		
 		if ($("#recordNumber").val()==0) {
 			
-			alert("Non e' stato trovato alcun aggiornamento");
+			alert("Non e' stato trovato alcun aggiornamento.");
 		}
 	}
 	
@@ -211,10 +211,10 @@ $(document).ready(function() {
 				
 			if (readFile.exists()) {
 				alert("Il file esiste");
-				readContents = readFile.read();
-alert(readContents);
-				var data = readContents.text;
-alert(data);	
+				//readContents = readFile.read();
+//alert(readContents);
+				var data = readFile.read().text;
+//alert(data);	
 				if(data!="") {
 			alert("E contiene istruzioni");
 					var updateInfo = data.split("[[SEP]]");
@@ -888,7 +888,6 @@ alert("Da aggiornare "+updateInfo[1]);
 			
 			$(".struttura-titolo:contains('scaricabile')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('scaricabile')").css("background-color", "#364395");
-
 
 			rs.close();
 			db.close();

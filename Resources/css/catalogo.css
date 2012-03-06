@@ -8,6 +8,10 @@ body {
 	min-height:100%;
 }
 
+a {
+	cursor: url(../img/hand.cur) 6 0, default !important;
+}
+
 /************************************************
 ** HEADER
 ************************************************/
@@ -91,7 +95,6 @@ body {
 #sceltaScuola a:hover {
 	background-color:#ed6b06;
 	color:#ffffff;
-	cursor:pointer;
 	border-left:3px solid #000000;
 	border-right:3px solid #000000;
 }
@@ -249,24 +252,23 @@ body {
 	height:52px;
 	background-image:url('../img/bkStrato.png');
 	z-index:10000;
-	cursor:pointer;
 	border: 1px solid;
 	border-color:red;
- }
+ 	cursor: url(../img/hand.cur), default !important;
+}
 
 #close-icon {
 	float:right;
 	margin:6px;
 	margin-left:0;
-	cursor:pointer;
 }
 #strato p {
 	float:right;
 	margin:6px;
 	color:#C00;
-	cursor:pointer;
 	line-height:16px;
 	font-size:11px;
+	cursor: url(../img/hand.cur) 6 0, default !important;
 }
 
 /************************************************
@@ -295,7 +297,7 @@ div.risultatoRiga {
 	text-align:left;
 	border-top: 1px solid;
 	border-top-color: #AAA;
-	cursor:pointer;
+	cursor: url(../img/hand.cur) 6 0, default !important;
 }
 div.risultatoRiga p {
 	display:block;
@@ -446,13 +448,13 @@ p.header-row {
 	background-color:#666;
 	font-size:13px;
 	color:#FFF;
-	cursor:pointer;
 	text-align:left;
 	font-weight:bold;
 	line-height:30px;
 	background-image:url('../img/freccia.gif');
 	background-position:top left;
 	background-repeat:no-repeat;
+	cursor: url(../img/hand.cur) 6 0, default !important;
 }
 p.header-row-expanded {
 	display:block;
@@ -465,13 +467,13 @@ p.header-row-expanded {
 	background-color:#666;
 	font-size:13px;
 	color:#FFF;
-	cursor:pointer;
 	text-align:left;
 	font-weight:bold;
 	line-height:30px;
 	background-image:url('../img/frecciaBottom.gif');
 	background-position:top left;
 	background-repeat:no-repeat;
+	cursor: url(../img/hand.cur) 6 0, default !important;
 }
 #header-struttura {
 	margin-bottom:0;
@@ -609,10 +611,16 @@ p.struttura-titolo {
 #scheda-btt img#digilibro-logo {
 	float:right;
 	/*clear:both;*/
-clear:right;
+	clear:right;
 	margin-top:10px;
 	margin-right:6px;
 	margin-bottom:10px;
+	cursor: url(../img/hand.cur) 6 0, default !important;
+ }
+#scheda-btt img#digilibro-logo:hover {
+	border-right:2px solid;
+	border-bottom:2px solid;
+	border-color: #888;
 }
 #scheda-btt img#etext-logo {
 	float:right;
@@ -620,6 +628,12 @@ clear:right;
 	margin-top:10px;
 	margin-right:6px;
 	margin-bottom:10px;
+	cursor: url(../img/hand.cur) 6 0, default !important;
+}
+#scheda-btt img#etext-logo:hover {
+	border-right:2px solid;
+	border-bottom:2px solid;
+	border-color: #888;
 }
 #scheda-btt #digilibroBtt {
 	float:right;
