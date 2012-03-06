@@ -9,7 +9,10 @@ body {
 }
 
 a {
+/*
 	cursor: url(../img/hand.cur) 6 0, default !important;
+*/
+	cursor: url(../img/hand.cur), default !important;
 }
 
 /************************************************

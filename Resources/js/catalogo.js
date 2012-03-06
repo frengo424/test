@@ -52,7 +52,7 @@ $(document).ready(function() {
 		loaderHtml = loaderHtml+"<p id=\"loader-header\">Aggiornamento in corso..</p>";
 		loaderHtml = loaderHtml+"<p id=\"loader-exp\">Non chiudere l'applicazione durante il processo di aggiornamento del listino</p>";
 		loaderHtml = loaderHtml+"<img src=\"img/loader.gif\" id=\"loader-img\" name=\"loader-img\" />";
-		loaderHtml = loaderHtml+"<p id=\"loader-action\">Installazione aggiornamento</p>";
+		loaderHtml = loaderHtml+"<p id=\"loader-action\">Installazione aggiornamento <span id=\"currRecord\"></span> di "+$("#recordNumber").val()+"</p>";
 			
 		$("#breadcrumbs").html('');
 		$("#ricerca").html('');
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		}
 	}
 
-	function aggiorna() {
+	function notBackground_aggiorna() {
 
 		if (Titanium.Network.online) {
 			
@@ -275,6 +275,48 @@ $(document).ready(function() {
 			
 				alert("Database non trovato");
 			}
+			
+		} else {
+			
+			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
+		}
+	}
+
+	function aggiorna() {
+
+		if (Titanium.Network.online) {
+			
+			Titanium.App.numRecord = parseInt($("#recordNumber").val());
+			
+			var $worker = Titanium.Worker.createWorker('js/updateDB.js');
+ 
+			$worker.onmessage = function($event)
+			{
+				var newdl = parseInt($event.message);
+				
+				if(newdl == 0) {
+					currRecord = 0; /* DB agganciato */
+				} else if(newdl == -1) {
+					alert("Database non trovato"); /* DB non trovato */
+					$worker.terminate();
+				} else if(newdl == -2) {		
+
+					/* Script terminato */
+					var lastUpdateDate = getLastUpdate();
+	
+					$("#recordNumber").val('0');
+					$( "#ultimoAggiornamento" ).html(printDate(lastUpdateDate));
+
+					backHome();
+				
+					$worker.terminate();
+				} else {
+					currRecord = newdl; /* Numero del record */
+				}
+				document.getElementById('currRecord').innerText = currRecord;
+			};
+ 
+			$worker.start();
 			
 		} else {
 			
