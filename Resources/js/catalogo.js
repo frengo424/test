@@ -110,7 +110,7 @@ $(document).ready(function() {
 		
 		if ($("#recordNumber").val()==0) {
 			
-			alert("Non e' stato trovato alcun aggiornamento");
+			alert("Non e' stato trovato alcun aggiornamento.");
 		}
 	}
 
@@ -208,7 +208,40 @@ $(document).ready(function() {
 						}
 					}
 
+<<<<<<< HEAD
     				/* DELETE */
+=======
+	function aggiorna() {
+		
+		if (Titanium.Network.online) {
+			alert("Inizio installazione");
+			var readContents;
+			var readFile = Titanium.Filesystem.getFile(Titanium.Filesystem.getDesktopDirectory(),'aggiornamentoDB.sql');
+				
+			if (readFile.exists()) {
+				alert("Il file esiste");
+				//readContents = readFile.read();
+//alert(readContents);
+				var data = readFile.read().text;
+//alert(data);	
+				if(data!="") {
+			alert("E contiene istruzioni");
+					var updateInfo = data.split("[[SEP]]");
+					
+					/*
+						updateInfo[1] : numero record da aggiornare
+						updateInfo[0] : stringa contenente tutti i volume_id nel db master
+						updateInfo[2] : query di inserimento/modifica
+					*/
+alert("Da aggiornare "+updateInfo[1]);
+					var dbPath = getDbPath();
+
+					if (dbPath.exists()) {
+			
+    					var db = Titanium.Database.openFile(dbPath);
+    		
+    					/* DELETE */
+>>>>>>> 6f154870e01bf74679c9e9e762b41e4f4bedf606
     					
     				sql = "SELECT volume_id FROM catalogo";
     		
@@ -877,7 +910,6 @@ $(document).ready(function() {
 			
 			$(".struttura-titolo:contains('scaricabile')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('scaricabile')").css("background-color", "#364395");
-
 
 			rs.close();
 			db.close();
