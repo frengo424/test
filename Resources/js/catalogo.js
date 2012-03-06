@@ -66,7 +66,7 @@ $(document).ready(function() {
 	});
 	
 	if (Titanium.Network.online) {
-		alert("PERCORSO: "+Titanium.Filesystem.getDesktopDirectory().toString()+Titanium.Filesystem.getSeparator()+'aggiornamentoDB.sql');
+		
 		verificaUpdate();	
 	}
 });
@@ -113,180 +113,169 @@ $(document).ready(function() {
 			alert("Non e' stato trovato alcun aggiornamento");
 		}
 	}
-	
-	function OLD__aggiorna() {
-		
-		var dataOra = $("#dateUpdate").val();
-
-		if (Titanium.Network.online) {
-			
-			$.ajaxSetup({ async:false });
-
-			$.get('http://listino.pearsonitalia.it/sqliteUpdater.action.php?lastupdate='+dataOra, function(data) {
-				
-				$("#loader-action").html('Download terminato. Installazione aggiornamento...');
-				
-				if(data!="") {
-				
-					var updateInfo = data.split("[[SEP]]");
-					
-					/*
-						updateInfo[1] : numero record da aggiornare
-						updateInfo[0] : stringa contenente tutti i volume_id nel db master
-						updateInfo[2] : query di inserimento/modifica
-					*/
-
-					var dbPath = getDbPath();
-
-					if (dbPath.exists()) {
-			
-    					var db = Titanium.Database.openFile(dbPath);
-    		
-    					/* DELETE */
-    					
-    					var sql = "SELECT volume_id FROM catalogo";
-    		
-    					var rs = db.execute(sql);
-    					
-    					while(rs.isValidRow()){
-			
-				 			if (updateInfo[0].indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
-				 				
-				 				/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
-				 				
-				 				sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
-				 				
-				 				db.execute(sql);
-				 			}
-
-							rs.next();
-						}
-
-						/* INSERT/UPDATE */
-						
-						var insertSql = updateInfo[2].split("[[SQL-SEP]]");
-						var queryNumber = insertSql.length;
-						
-						for(var i=0;i<queryNumber;i++) {
-							
-							db.execute(insertSql[i]);
-						}
-						
-						rs.close();
-		
-						db.close();
-						
-						var lastUpdateDate = getLastUpdate();
-	
-						$("#recordNumber").val('0');
-						$( "#ultimoAggiornamento" ).html(printDate(lastUpdateDate));
-
-						backHome();
-
-					} else {
-			
-						alert("Database non trovato");
-					}
-
-				} else {
-					
-					alert("Errore durante l'aggiornamento del catalogo, riprovare più tardi.");
-				}
-			});
-
-			$.ajaxSetup({ async:true });
-		
-		} else {
-			
-			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
-		}
-	}
 
 	function aggiorna() {
-		
+
 		if (Titanium.Network.online) {
-			alert("Inizio installazione");
-			var readContents;
-			var readFile = Titanium.Filesystem.getFile(Titanium.Filesystem.getDesktopDirectory(),'aggiornamentoDB.sql');
-				
-			if (readFile.exists()) {
-				alert("Il file esiste");
-				readContents = readFile.read();
-alert(readContents);
-				var data = readContents.text;
-alert(data);	
-				if(data!="") {
-			alert("E contiene istruzioni");
-					var updateInfo = data.split("[[SEP]]");
-					
-					/*
-						updateInfo[1] : numero record da aggiornare
-						updateInfo[0] : stringa contenente tutti i volume_id nel db master
-						updateInfo[2] : query di inserimento/modifica
-					*/
-alert("Da aggiornare "+updateInfo[1]);
-					var dbPath = getDbPath();
-
-					if (dbPath.exists()) {
 			
-    					var db = Titanium.Database.openFile(dbPath);
-    		
-    					/* DELETE */
-    					
-    					var sql = "SELECT volume_id FROM catalogo";
-    		
-    					var rs = db.execute(sql);
-    					
-    					while(rs.isValidRow()){
+			var sql = "";
 			
-				 			if (updateInfo[0].indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
-				 				
-				 				/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
-				 				
-				 				sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
-				 				
-				 				db.execute(sql);
-				 			}
-
-							rs.next();
-						}
-
-						/* INSERT/UPDATE */
-						
-						var insertSql = updateInfo[2].split("[[SQL-SEP]]");
-						var queryNumber = insertSql.length;
-						
-						for(var i=0;i<queryNumber;i++) {
-							
-							db.execute(insertSql[i]);
-						}
-						
-						rs.close();
-		
-						db.close();
-						
-						var lastUpdateDate = getLastUpdate();
+			var matrice = "";
+			var numRecord = parseInt($("#recordNumber").val());
+			var numQuery = 0;
+			var insertSql = "";
 	
-						$("#recordNumber").val('0');
-						$( "#ultimoAggiornamento" ).html(printDate(lastUpdateDate));
+			var dbPath = getDbPath();
 
-						backHome();
-				
-					} else {
+			if (dbPath.exists()) {
 			
-						alert("Database non trovato");
+				var db = Titanium.Database.openFile(dbPath);
+			
+				var filePath = Titanium.Filesystem.getApplicationDataDirectory().toString()+Titanium.Filesystem.getSeparator()+'aggiornamentoDB.sql';
+
+				var fileStream = Titanium.Filesystem.getFileStream(filePath);
+
+				fileStream.open(Titanium.Filesystem.MODE_READ,true);
+			
+				var linea = fileStream.readLine();
+
+				if (linea.indexOf("[[SQL-START]]")!=-1) {
+				
+					matrice = linea.substring(0,linea.indexOf("[[SQL-START]]"));
+				
+					/* DELETE */
+    					
+    				sql = "SELECT volume_id FROM catalogo";
+    		
+    				var rs = db.execute(sql);
+    					
+    				while(rs.isValidRow()){
+			
+				 		if (matrice.indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
+				 				
+				 			/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
+				 				
+				 			sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
+				 			db.execute(sql);
+				 		}
+
+						rs.next();
+					}
+	
+					while(linea != null) {
+
+						linea = fileStream.readLine();
+					
+						insertSql = insertSql+linea;
+
+						if (linea.indexOf("[[SQL-END]]")!=-1) {
+
+							/* Query di inserimento completa */
+						
+							sql = insertSql.replace("[[SQL-END]]","");
+
+							db.execute(sql);
+							
+							numQuery = numQuery + 1;
+
+							if (numQuery==numRecord) {
+
+								break;
+								
+							} else {
+								
+								insertSql = "";	
+							}
+						}
 					}
 
 				} else {
+				
+					matrice = linea;
+				
+					while(linea != null) {
+
+						linea = fileStream.readLine();
 					
-					alert("Errore durante l'aggiornamento del catalogo, ripetere la procedura di aggiornamento.");
+						if (linea.indexOf("[[SQL-START]]")!=-1) {
+
+							matrice = matrice+linea.substring(0,linea.indexOf("[[SQL-START]]"));
+							break;
+						
+						} else {
+						
+							matrice = matrice+linea;
+						}
+					}
+
+    				/* DELETE */
+    					
+    				sql = "SELECT volume_id FROM catalogo";
+    		
+    				var rs = db.execute(sql);
+    					
+    				while(rs.isValidRow()){
+			
+				 		if (matrice.indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
+				 				
+				 			/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
+				 				
+				 			sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
+				 			db.execute(sql);
+				 		}
+
+						rs.next();
+					}
+
+					while(linea != null) {
+
+						linea = fileStream.readLine();
+					
+						insertSql = insertSql+linea;
+
+						if (linea.indexOf("[[SQL-END]]")!=-1) {
+
+							/* Query di inserimento completa */
+						
+							sql = insertSql.replace("[[SQL-END]]","");
+						
+							db.execute(sql);
+
+							numQuery = numQuery + 1;
+						
+							if (numQuery==numRecord) {
+								
+								break;
+								
+							} else {
+								
+								insertSql = "";	
+							}
+						}
+					}
 				}
+								
+				matrice = "";
+				insertSql = "";	
+
+				rs.close();
+		
+				db.close();
+				
+				fileStream.close();
+					
+				var lastUpdateDate = getLastUpdate();
+	
+				$("#recordNumber").val('0');
+				$( "#ultimoAggiornamento" ).html(printDate(lastUpdateDate));
+
+				backHome();
 				
 			} else {
-				
-				alert("L'aggiornamento non è stato scaricato correttamente.")
+			
+				alert("Database non trovato");
 			}
-
+			
 		} else {
 			
 			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
@@ -954,6 +943,8 @@ alert("Da aggiornare "+updateInfo[1]);
 		
 			db.close();
 		
+			Titanium.App.lastUpdate = lastUpdateDate;
+			
 			return lastUpdateDate;
 
 		} else {
@@ -1006,11 +997,7 @@ alert("Da aggiornare "+updateInfo[1]);
 				dlbytes = 0;
 				$worker.terminate();
 			} else if(newdl == -2) {		
-				
-				/*			
-					alert('Download completato');
-					
-				*/
+
 				$("#downloadInfo").hide();
 				$( "#finestraInstallazione" ).dialog({ modal: true, width: 600, height:280 });
 				

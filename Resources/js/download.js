@@ -1,4 +1,4 @@
-var url = 'http://listino.pearsonitalia.it/sqliteUpdater.action.php?lastupdate='/*+$("#dateUpdate").val()*/;
+var url = 'http://listino.pearsonitalia.it/sqliteUpdater.action.php?lastupdate='+Titanium.App.lastUpdate;
 var httpClient = Titanium.Network.createHTTPClient();
 httpClient.xxxWorker = this;
  
@@ -16,7 +16,7 @@ httpClient.onerror = function(e) {
 if (httpClient.open('GET', url)) {
 	this.postMessage(0);
 	var file = Titanium.Filesystem.createTempFile();
-	var filePath = 	Titanium.Filesystem.getDesktopDirectory().toString()+
+	var filePath = 	Titanium.Filesystem.getApplicationDataDirectory().toString()+
 				Titanium.Filesystem.getSeparator()+
 				'aggiornamentoDB.sql';
 	file.copy(filePath);
