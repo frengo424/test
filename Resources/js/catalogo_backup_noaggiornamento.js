@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 	$( "#aggiorna" ).button();
 	$( "#aggiorna" ).click(function() {
-/*
+
 		var loaderHtml = "";
 		loaderHtml = loaderHtml+"<p id=\"loader-header\">Aggiornamento in corso..</p>";
 		loaderHtml = loaderHtml+"<p id=\"loader-exp\">Non chiudere l'applicazione o il collegamento ad Internet durante il processo di aggiornamento del listino</p>";
@@ -32,41 +32,12 @@ $(document).ready(function() {
 		$( "#finestraAggiornamento" ).dialog('close');
 
 		setTimeout("aggiorna()",100);
-*/
-		$( "#finestraAggiornamento" ).dialog('close');
-		
-		$("#downloadInfo").show();
-		
-		downloadFiles();
 		
 		return false;
 	});
 
-	$( "#interrompi_inst" ).button();
-	$( "#interrompi_inst" ).click(function() { $( "#finestraInstallazione" ).dialog('close'); return false; });
-
-	$( "#installa" ).button();
-	$( "#installa" ).click(function() {
-
-		var loaderHtml = "";
-		loaderHtml = loaderHtml+"<p id=\"loader-header\">Aggiornamento in corso..</p>";
-		loaderHtml = loaderHtml+"<p id=\"loader-exp\">Non chiudere l'applicazione durante il processo di aggiornamento del listino</p>";
-		loaderHtml = loaderHtml+"<img src=\"img/loader.gif\" id=\"loader-img\" name=\"loader-img\" />";
-		loaderHtml = loaderHtml+"<p id=\"loader-action\">Installazione aggiornamento</p>";
-			
-		$("#breadcrumbs").html('');
-		$("#ricerca").html('');
-		$("#contenuto").html(loaderHtml);
-		
-		$( "#finestraInstallazione" ).dialog('close');
-
-		setTimeout("aggiorna()",100);
-
-		return false;
-	});
-	
 	if (Titanium.Network.online) {
-		alert("PERCORSO: "+Titanium.Filesystem.getDesktopDirectory().toString()+Titanium.Filesystem.getSeparator()+'aggiornamentoDB.sql');
+		
 		verificaUpdate();	
 	}
 });
@@ -94,7 +65,7 @@ $(document).ready(function() {
 			
 			if(parseInt($("#recordNumber").val())!=0) {
 				
-				$( "#finestraAggiornamento" ).dialog({ modal: true, width: 600, height:280 }); 
+				$( "#finestraAggiornamento" ).dialog({ modal: true, width: 500, height:280 }); 
 				$( "#nAggiornamenti" ).html($("#recordNumber").val());
 			}
 
@@ -114,7 +85,7 @@ $(document).ready(function() {
 		}
 	}
 	
-	function OLD__aggiorna() {
+	function aggiorna() {
 		
 		var dataOra = $("#dateUpdate").val();
 
@@ -196,97 +167,6 @@ $(document).ready(function() {
 
 			$.ajaxSetup({ async:true });
 		
-		} else {
-			
-			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
-		}
-	}
-
-	function aggiorna() {
-		
-		if (Titanium.Network.online) {
-			alert("Inizio installazione");
-			var readContents;
-			var readFile = Titanium.Filesystem.getFile(Titanium.Filesystem.getDesktopDirectory(),'aggiornamentoDB.sql');
-				
-			if (readFile.exists()) {
-				alert("Il file esiste");
-				readContents = readFile.read();
-alert(readContents);
-				var data = readContents.text;
-alert(data);	
-				if(data!="") {
-			alert("E contiene istruzioni");
-					var updateInfo = data.split("[[SEP]]");
-					
-					/*
-						updateInfo[1] : numero record da aggiornare
-						updateInfo[0] : stringa contenente tutti i volume_id nel db master
-						updateInfo[2] : query di inserimento/modifica
-					*/
-alert("Da aggiornare "+updateInfo[1]);
-					var dbPath = getDbPath();
-
-					if (dbPath.exists()) {
-			
-    					var db = Titanium.Database.openFile(dbPath);
-    		
-    					/* DELETE */
-    					
-    					var sql = "SELECT volume_id FROM catalogo";
-    		
-    					var rs = db.execute(sql);
-    					
-    					while(rs.isValidRow()){
-			
-				 			if (updateInfo[0].indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
-				 				
-				 				/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
-				 				
-				 				sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
-				 				
-				 				db.execute(sql);
-				 			}
-
-							rs.next();
-						}
-
-						/* INSERT/UPDATE */
-						
-						var insertSql = updateInfo[2].split("[[SQL-SEP]]");
-						var queryNumber = insertSql.length;
-						
-						for(var i=0;i<queryNumber;i++) {
-							
-							db.execute(insertSql[i]);
-						}
-						
-						rs.close();
-		
-						db.close();
-						
-						var lastUpdateDate = getLastUpdate();
-	
-						$("#recordNumber").val('0');
-						$( "#ultimoAggiornamento" ).html(printDate(lastUpdateDate));
-
-						backHome();
-				
-					} else {
-			
-						alert("Database non trovato");
-					}
-
-				} else {
-					
-					alert("Errore durante l'aggiornamento del catalogo, ripetere la procedura di aggiornamento.");
-				}
-				
-			} else {
-				
-				alert("L'aggiornamento non è stato scaricato correttamente.")
-			}
-
 		} else {
 			
 			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
@@ -971,55 +851,4 @@ alert("Da aggiornare "+updateInfo[1]);
 	function decimalSeparator(numero){
 		var s = numero.replace(/([0-9]+),([0-9]+)/g, '$1#$2').replace(/([0-9]+)\.([0-9]+)/g, '$1,$2').replace(/([0-9]+)#([0-9]+)/g, '$1.$2'); //inverte il punto con la virgola, se presenti
 		return s
-	}
-	
-	/* Funzioni per il download dell'aggiornamento */
-	
-	var BINARY_UNITS= [1024, 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi', 'Yo'];
-	var SI_UNITS= [1000, 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
- 
-	function unitify(n, units) {
-	    for (var i= units.length; i-->1;) {
-	        var unit= Math.pow(units[0], i);
-	        if (n >= unit) {
-		var result = n / unit; 
-		return result.toFixed(2) + units[i];
-		}
-	    }
-    	return n;
-	}
- 
-	/* Numero di byte scaricati */
-	var dlbytes = 0;
- 
-	function downloadFiles() {
-		
-		var $worker = Titanium.Worker.createWorker('js/download.js');
- 
-		$worker.onmessage = function($event)
-		{
-			var newdl = parseInt($event.message);
-			if(newdl == 0) {
-				dlbytes = 0;
-			} else if(newdl == -1) {
-				alert("Errore durante il download dell'aggiornamento");
-				dlbytes = 0;
-				$worker.terminate();
-			} else if(newdl == -2) {		
-				
-				/*			
-					alert('Download completato');
-					
-				*/
-				$("#downloadInfo").hide();
-				$( "#finestraInstallazione" ).dialog({ modal: true, width: 600, height:280 });
-				
-				$worker.terminate();
-			} else {
-				dlbytes += newdl;
-			}
-			document.getElementById('dlsize').innerText = unitify(dlbytes,BINARY_UNITS);
-		};
- 
-		$worker.start();
 	}

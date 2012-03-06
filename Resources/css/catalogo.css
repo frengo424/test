@@ -116,6 +116,45 @@ body {
 	background-repeat:no-repeat;
 }
 
+#downloadInfo {
+	position:absolute;
+	top:-35px;
+	right:10px;
+	display:none;
+	margin:0;
+	padding:10px;
+	padding-right:0;
+	width:160px;
+	background-color:#CCC;
+	overflow:hidden;
+	color:#000;
+	font-size:10px;
+	font-weight:normal;
+	text-align:left;
+	text-transform:none;
+}
+
+#downloader {
+	float:left;
+	margin:0;
+	margin-right:10px;
+}
+
+#finestraInstallazione {
+	display:none;
+}
+
+#interrompi_inst {
+	position:absolute;
+	bottom:10px;
+	left:10px;
+}
+
+#installa {
+	position:absolute;
+	bottom:10px;
+	right:10px;
+}
 
 /************************************************
 ** Breadcrumbs

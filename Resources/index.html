@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="js/jquery/js/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery/js/jquery-ui-1.8.17.custom.min.js"></script>
 		<script type="text/javascript" src="js/bin2hex.js"></script>
+		<script type="text/javascript" src="js/download.js"></script>
 		<script type="text/javascript" src="js/catalogo.js"></script>
 
 	</head>
@@ -31,9 +32,14 @@
 		<div id="finestraAggiornamento" title="Aggiornamento catalogo">
 			<h2>Sono disponibili <span id="nAggiornamenti">6</span> aggiornamenti. <br />Come desideri procedere?</h2>
 			<a id="interrompi">Continua senza aggiornare</a>
-			<a id="aggiorna">Aggiorna...</a>
+			<a id="aggiorna">Scarica aggiornamento</a>
+		</div>
+		<div id="finestraInstallazione" title="Aggiornamento catalogo">
+			<h2>L'aggiornamento &egrave; stato scaricato.</h2>
+			<a id="interrompi_inst">Continua senza installare</a>
+			<a id="installa">Installa aggiornamento</a>
 		</div>
 		</div>
-		<div id="copyright">&copy; Pearson Italia, tutti i diritti riservati - Ultimo aggiornamento: <a href="Javascript:chiediUpdate();" id="ultimoAggiornamento"></a><input type="hidden" id="recordNumber" name="recordNumber" /><input type="hidden" id="dateUpdate" name="dateUpdate" /></div>
+		<div id="copyright">&copy; Pearson Italia, tutti i diritti riservati - Ultimo aggiornamento: <a href="Javascript:chiediUpdate();" id="ultimoAggiornamento"></a><input type="hidden" id="recordNumber" name="recordNumber" /><input type="hidden" id="dateUpdate" name="dateUpdate" /><div id="downloadInfo"><img src="img/downloader.gif" alt="Download aggiornamento in corso" title="Download aggiornamento in corso" id="downloader" />Scaricati <span id="dlsize">0</span>B</div></div>
 	</body>
 </html>
