@@ -18,21 +18,7 @@ $(document).ready(function() {
 
 	$( "#aggiorna" ).button();
 	$( "#aggiorna" ).click(function() {
-/*
-		var loaderHtml = "";
-		loaderHtml = loaderHtml+"<p id=\"loader-header\">Aggiornamento in corso..</p>";
-		loaderHtml = loaderHtml+"<p id=\"loader-exp\">Non chiudere l'applicazione o il collegamento ad Internet durante il processo di aggiornamento del listino</p>";
-		loaderHtml = loaderHtml+"<img src=\"img/loader.gif\" id=\"loader-img\" name=\"loader-img\" />";
-		loaderHtml = loaderHtml+"<p id=\"loader-action\">Download aggiornamento</p>";
-			
-		$("#breadcrumbs").html('');
-		$("#ricerca").html('');
-		$("#contenuto").html(loaderHtml);
-			
-		$( "#finestraAggiornamento" ).dialog('close');
 
-		setTimeout("aggiorna()",100);
-*/
 		$( "#finestraAggiornamento" ).dialog('close');
 		
 		$("#downloadInfo").show();
@@ -111,174 +97,6 @@ $(document).ready(function() {
 		if ($("#recordNumber").val()==0) {
 			
 			alert("Non e' stato trovato alcun aggiornamento");
-		}
-	}
-
-	function notBackground_aggiorna() {
-
-		if (Titanium.Network.online) {
-			
-			var sql = "";
-			
-			var matrice = "";
-			var numRecord = parseInt($("#recordNumber").val());
-			var numQuery = 0;
-			var insertSql = "";
-	
-			var dbPath = getDbPath();
-
-			if (dbPath.exists()) {
-			
-				var db = Titanium.Database.openFile(dbPath);
-			
-				var filePath = Titanium.Filesystem.getApplicationDataDirectory().toString()+Titanium.Filesystem.getSeparator()+'aggiornamentoDB.sql';
-
-				var fileStream = Titanium.Filesystem.getFileStream(filePath);
-
-				fileStream.open(Titanium.Filesystem.MODE_READ,true);
-			
-				var linea = fileStream.readLine();
-
-				if (linea.indexOf("[[SQL-START]]")!=-1) {
-				
-					matrice = linea.substring(0,linea.indexOf("[[SQL-START]]"));
-				
-					/* DELETE */
-    					
-    				sql = "SELECT volume_id FROM catalogo";
-    		
-    				var rs = db.execute(sql);
-    					
-    				while(rs.isValidRow()){
-			
-				 		if (matrice.indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
-				 				
-				 			/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
-				 				
-				 			sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
-				 			db.execute(sql);
-				 		}
-
-						rs.next();
-					}
-	
-					while(linea != null) {
-
-						linea = fileStream.readLine();
-					
-						insertSql = insertSql+linea;
-
-						if (linea.indexOf("[[SQL-END]]")!=-1) {
-
-							/* Query di inserimento completa */
-						
-							sql = insertSql.replace("[[SQL-END]]","");
-
-							db.execute(sql);
-							
-							numQuery = numQuery + 1;
-
-							if (numQuery==numRecord) {
-
-								break;
-								
-							} else {
-								
-								insertSql = "";	
-							}
-						}
-					}
-
-				} else {
-				
-					matrice = linea;
-				
-					while(linea != null) {
-
-						linea = fileStream.readLine();
-					
-						if (linea.indexOf("[[SQL-START]]")!=-1) {
-
-							matrice = matrice+linea.substring(0,linea.indexOf("[[SQL-START]]"));
-							break;
-						
-						} else {
-						
-							matrice = matrice+linea;
-						}
-					}
-
-    				/* DELETE */
-    					
-    				sql = "SELECT volume_id FROM catalogo";
-    		
-    				var rs = db.execute(sql);
-    					
-    				while(rs.isValidRow()){
-			
-				 		if (matrice.indexOf("-"+rs.fieldByName("volume_id")+"-")==-1) {
-				 				
-				 			/* Il record non esiste nel DB master, quindi va cancellato in SQLite */
-				 				
-				 			sql = "DELETE FROM catalogo WHERE volume_id='"+rs.fieldByName("volume_id")+"'";
-				 			db.execute(sql);
-				 		}
-
-						rs.next();
-					}
-
-					while(linea != null) {
-
-						linea = fileStream.readLine();
-					
-						insertSql = insertSql+linea;
-
-						if (linea.indexOf("[[SQL-END]]")!=-1) {
-
-							/* Query di inserimento completa */
-						
-							sql = insertSql.replace("[[SQL-END]]","");
-						
-							db.execute(sql);
-
-							numQuery = numQuery + 1;
-						
-							if (numQuery==numRecord) {
-								
-								break;
-								
-							} else {
-								
-								insertSql = "";	
-							}
-						}
-					}
-				}
-								
-				matrice = "";
-				insertSql = "";	
-
-				rs.close();
-		
-				db.close();
-				
-				fileStream.close();
-					
-				var lastUpdateDate = getLastUpdate();
-	
-				$("#recordNumber").val('0');
-				$( "#ultimoAggiornamento" ).html(printDate(lastUpdateDate));
-
-				backHome();
-				
-			} else {
-			
-				alert("Database non trovato");
-			}
-			
-		} else {
-			
-			alert("Per effettuare l'aggiornamento del catalogo è necessario disporre di una connessione a Internet.");
 		}
 	}
 
@@ -367,7 +185,7 @@ $(document).ready(function() {
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
-				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Grado</option><option value=\" primo grado -\">Primo grado</option><option value=\" secondo grado -\">Secondo grado</option></select>"; 
+				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Grado scuola</option><option value=\" primo grado -\">Primo grado</option><option value=\" secondo grado -\">Secondo grado</option></select>"; 
 				ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option>"+printMarchio(areaId)+"</select>"; 
 				ricercaContent = ricercaContent+"<input type=\"text\" id=\"materiaStr\" name=\"materiaStr\" value=\"\" onclick=\"if ($(this).val()==$('#materiaStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#materiaStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
 				ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
