@@ -14,6 +14,7 @@ $(document).ready(function() {
 	}
 	
 	$( "#breadcrumbs" ).hide();
+	$( "#stampa" ).hide();
 	$("#recordNumber").val('0');
 	$("#dateUpdate").val(lastUpdateDate);
 	$("#ultimoAggiornamento").html(printDate(lastUpdateDate));
@@ -41,12 +42,13 @@ $(document).ready(function() {
 
 		var loaderHtml = "";
 		loaderHtml = loaderHtml+"<p id=\"loader-header\">Aggiornamento in corso..</p>";
-		loaderHtml = loaderHtml+"<p id=\"loader-exp\">Non chiudere l'applicazione durante il processo di aggiornamento del listino</p>";
+		loaderHtml = loaderHtml+"<p id=\"loader-exp\">Non chiudere l'applicazione durante il processo di aggiornamento del listino.</p>";
 		loaderHtml = loaderHtml+"<img src=\"img/loader.gif\" id=\"loader-img\" name=\"loader-img\" />";
 		loaderHtml = loaderHtml+"<p id=\"loader-action\">Installazione aggiornamento <span id=\"currRecord\"></span> di "+$("#recordNumber").val()+"</p>";
 			
 		$("#breadcrumbs").html('');
 		$("#ricerca").html('');
+		$( "#contenuto" ).css('background-color', '#FFF');
 		$("#contenuto").html(loaderHtml);
 		
 		$( "#finestraInstallazione" ).dialog('close');
@@ -100,8 +102,7 @@ $(document).ready(function() {
 		verificaUpdate();
 		
 		if ($("#recordNumber").val()==0) {
-			
-			alert("Non e' stato trovato alcun aggiornamento");
+			alert("Il listino è aggiornato.");
 		}
 	}
 
@@ -220,6 +221,7 @@ $(document).ready(function() {
 		$( "#back" ).hide();
 		$( "#back-icon" ).hide();
 		$( "#breadcrumbs" ).html(breadcrumbsContent).show();
+		$( "#stampa" ).show();
 		$( "#ricerca" ).html(ricercaContent);
 		$( "#materiaStr" ).val($('#materiaStrLabel').val());
 		$( "#searchStr" ).val($('#searchStrLabel').val());
@@ -261,6 +263,7 @@ $(document).ready(function() {
 		
 		$( "#contenuto" ).css('background-color', '#FFFFFF');
 		$( "#breadcrumbs" ).html('').hide();
+		$( "#stampa" ).hide();
 		$( "#ricerca" ).html('');
 		$( "#contenuto" ).html(contenutoContent).css('top', '50');
 	}
