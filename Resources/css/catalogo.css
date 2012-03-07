@@ -56,10 +56,11 @@ a {
 }
 #contenuto h2 {
 	color:#ED6B06;
+	font-size:40px;
 	font-weight:normal;
 }
 #contenuto p#explain {
-	font-size:11px;
+	font-size:21px;
 }
 #contenuto #img-intro {
 	margin-top:25px;
@@ -323,6 +324,7 @@ a {
 }
 
 div.risultatoRiga {
+	position:relative;
 	display:block;
 	margin:0;
 	padding:0;
@@ -335,14 +337,19 @@ div.risultatoRiga {
 	text-align:left;
 	border-top: 1px solid;
 	border-top-color: #AAA;
-	cursor: pointer;
+	cursor:pointer;
+	min-height:100px;
 }
 div.risultatoRiga p {
 	display:block;
 	margin:0;
+	margin-left:90px;
 	padding:0;
 	border:0;
 	font-size:12px;
+}
+div.risultatoRiga div {
+	margin-left:90px;
 }
 div.risultatoRiga p.risultato-isbn{
 	margin-top:5px;
@@ -352,11 +359,13 @@ div.risultatoRiga p.risultato-autore {
 }
 div.risultatoRiga p.risultato-titolo {
 	margin:0px;
+	margin-left:90px;
 	font-size:18px;
 	font-weight:bold;
 }
 div.risultatoRiga div.risultato-sottotitolo {
 	margin:0;
+	margin-left:90px;
 	font-size:15px;
 	font-style:italic;
 }
@@ -370,11 +379,10 @@ div.risultatoRiga img.risultato-marchio {
 }
 
 div.risultatoRiga img {
-	float:left;
-	margin:0;
-	margin-right:10px;
+	position:absolute;
+	top:0;
+	left:0;
 }
-
 
 /************************************************
 ** SCHEDA

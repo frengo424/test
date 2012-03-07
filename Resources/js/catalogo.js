@@ -85,7 +85,7 @@ $(document).ready(function() {
 			
 			if(parseInt($("#recordNumber").val())!=0) {
 				
-				$( "#finestraAggiornamento" ).dialog({ modal: true, width: 600, height:280 }); 
+				$( "#finestraAggiornamento" ).dialog({ modal: true, width: 600, height:280, resizable: false }); 
 				$( "#nAggiornamenti" ).html($("#recordNumber").val());
 			}
 
@@ -903,7 +903,7 @@ $(document).ready(function() {
 			} else if(newdl == -2) {		
 
 				$("#downloadInfo").hide();
-				$( "#finestraInstallazione" ).dialog({ modal: true, width: 600, height:280 });
+				$( "#finestraInstallazione" ).dialog({ modal: true, width: 600, height:280, resizable: false });
 				
 				$worker.terminate();
 			} else {
