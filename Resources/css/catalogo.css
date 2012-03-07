@@ -369,6 +369,9 @@ div.risultatoRiga div.risultato-sottotitolo {
 	font-size:15px;
 	font-style:italic;
 }
+div.risultatoRiga div.risultato-sottotitolo p, div {
+	margin-left:0;
+}
 div.risultatoRiga p.risultato-percorso {
 	margin-top:5px;
 }
@@ -378,7 +381,7 @@ div.risultatoRiga img.risultato-marchio {
 	margin-right:6px;
 }
 
-div.risultatoRiga img {
+div.risultatoRiga img.img-copertina {
 	position:absolute;
 	top:0;
 	left:0;

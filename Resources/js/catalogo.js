@@ -542,7 +542,12 @@ $(document).ready(function() {
 				risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRiga\" onclick=\"Javascript:cercaISBN('"+rs.fieldByName("volume_isbn")+"')\">";
 				if (rs.fieldByName("opera_marchio")!="") { risultatoRicercaHtml = risultatoRicercaHtml+immagineMarchio(rs.fieldByName("opera_marchio")); }
 				//risultatoRicercaHtml = risultatoRicercaHtml+"<div class=\"risultatoRigaSx\">";
-				risultatoRicercaHtml = risultatoRicercaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
+				
+				if (imgHexString!="") {
+					
+					risultatoRicercaHtml = risultatoRicercaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" class=\"img-copertina\" />";
+				}
+				
 				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-isbn\">ISBN "+rs.fieldByName("volume_isbn")+"</p>";
 				if (rs.fieldByName("volume_autori")!="") { risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-autore\">"+rs.fieldByName("volume_autori")+"</p>"; }
 				risultatoRicercaHtml = risultatoRicercaHtml+"<p class=\"risultato-titolo\">"+rs.fieldByName("volume_titolo")+"</p>";
