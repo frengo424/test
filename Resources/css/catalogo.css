@@ -58,6 +58,14 @@ a {
 	color: #ed6b06;
 }
 #contenuto h2 {
+	color:#ED6B06;
+	font-weight:normal;
+}
+#contenuto p#explain {
+	font-size:11px;
+}
+#contenuto #img-intro {
+	margin-top:25px;
 }
 #finestraAggiornamento {
 	display:none;

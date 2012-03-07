@@ -170,7 +170,7 @@ $(document).ready(function() {
 			
 			case '1':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
-				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.gif\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
+				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.png\" onmouseover=\"this.src='img/back-hover.png'\" onmouseout=\"this.src='img/back.png'\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"macrodestinazione\" name=\"macrodestinazione\" value=\"\" />";
@@ -184,7 +184,7 @@ $(document).ready(function() {
 				break;
 			case '2':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
-				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.gif\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
+				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.png\" onmouseover=\"this.src='img/back-hover.png'\" onmouseout=\"this.src='img/back.png'\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Grado scuola</option><option value=\" primo grado -\">Primo grado</option><option value=\" secondo grado -\">Secondo grado</option></select>"; 
@@ -198,7 +198,7 @@ $(document).ready(function() {
 				break;
 			case '555':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
-				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.gif\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
+				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.png\" onmouseover=\"this.src='img/back-hover.png'\" onmouseout=\"this.src='img/back.png'\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Scegli</option><option value=\" varia -\">Varia</option><option value=\" università -\">Università</option></select>"; 
@@ -218,13 +218,43 @@ $(document).ready(function() {
 		$( "#ricerca" ).html(ricercaContent);
 		$( "#materiaStr" ).val($('#materiaStrLabel').val());
 		$( "#searchStr" ).val($('#searchStrLabel').val());
-		$( "#contenuto" ).html('').css('top', '140');
+			
+		switch (areaId) {
+
+			case '555':
+				var contenutoContent = "<h2>Imparare per vivere.<br />Imparare per crescere.<br />Imparare sempre.</h2>";
+				contenutoContent = contenutoContent+"<p id=\"explain\">Pearson offre una ricca produzione di editoria professionale, saggistica e editoria universitaria,"; 
+				contenutoContent = contenutoContent+"<br />per lettori che desiderano essere sempre aggiornati per il proprio lavoro,"; 
+				contenutoContent = contenutoContent+"<br />studiano, amano approfondire le proprie conoscenze,"; 
+				contenutoContent = contenutoContent+"<br />desiderano seguire le principali questioni del dibattito culturale contemporaneo.</p>"; 
+				contenutoContent = contenutoContent+"<img src=\"img/uni-intro.gif\" id=\"img-intro\" alt=\"\" title=\"\" />";
+				
+				$( "#contenuto" ).css('background-color', '#FBF7EC');
+				$( "#contenuto" ).html(contenutoContent).css('top', '140');
+				
+				break;
+				
+			default:
+				var contenutoContent = "<h2>Pearson, a norma dal 2009</h2>";
+				contenutoContent = contenutoContent+"<p id=\"explain\">Con DIGIlibro libro misto Pearson ha offerto fin dal 2009 la garanzia"; 
+				contenutoContent = contenutoContent+"<br />che le proprie proposte sono a norma di legge, nella forma mista cartacea e digitale."; 
+				contenutoContent = contenutoContent+"<br /><br />DIGIlibro libro misto e eTEXT fanno parte del Pearson Digital System:";  
+				contenutoContent = contenutoContent+"<br />non solo libri misti o scaricabili da Internet, ma anche interattivi, piattaforme";  
+				contenutoContent = contenutoContent+"<br />per l'apprendimento personalizzato, laboratori interattivi multimediali.";  
+				contenutoContent = contenutoContent+"<br />E poi il libro sfogliabile e interattivo con materiali multimediali"; 
+				contenutoContent = contenutoContent+"<br />per fare lezione con la LIM...</p>"; 
+				contenutoContent = contenutoContent+"<img src=\"img/spss-intro.gif\" id=\"img-intro\" alt=\"\" title=\"\" />";
+				
+				$( "#contenuto" ).css('background-color', '#FBF7EC');
+				$( "#contenuto" ).html(contenutoContent).css('top', '140');
+		}
 	}
 	
 	function backHome() {
 	
 		var contenutoContent = "<h1>Catalogo Pearson Italia</h1><ul id=\"sceltaScuola\"><li><a href=\"Javascript:switchArea('1')\" id=\"scuolaPrimaria\">Scuola Primaria</a></li><li><a href=\"Javascript:switchArea('2')\" id=\"scuolaSecondaria\">Scuola Secondaria</a></li><li><a href=\"Javascript:switchArea('555')\" id=\"variaUniversita\">Varia / Universit&agrave;</a></li></ul>";
 		
+		$( "#contenuto" ).css('background-color', '#FFFFFF');
 		$( "#breadcrumbs" ).html('').hide();
 		$( "#ricerca" ).html('');
 		$( "#contenuto" ).html(contenutoContent).css('top', '50');
@@ -525,6 +555,7 @@ $(document).ready(function() {
 		
 			var breadcrumbsContent = "<p><a href=\"Javascript:backHome()\">Inizio</a> > <a href=\"Javascript:switchArea('"+$("#areaId").val()+"')\">"+getAreaName($("#areaId").val())+"</a> > Risultato ricerca</p>";
 
+			$( "#contenuto" ).css('background-color', '#FFFFFF');
 			$( "#back" ).hide();
 			$( "#back-icon" ).hide();
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
@@ -744,8 +775,8 @@ $(document).ready(function() {
 			$(".struttura-titolo:contains('insegnante')").css("color", "#FFFFFF");
 			$(".struttura-titolo:contains('insegnante')").css("background-color", "#ed6b06");
 			
-			$(".struttura-titolo:contains('scaricabile')").css("color", "#FFFFFF");
-			$(".struttura-titolo:contains('scaricabile')").css("background-color", "#364395");
+			$(".struttura-titolo:contains('ersione online scaricabile')").css("color", "#FFFFFF");
+			$(".struttura-titolo:contains('ersione online scaricabile')").css("background-color", "#364395");
 
 
 			rs.close();
