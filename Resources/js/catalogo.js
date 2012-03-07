@@ -8,6 +8,11 @@ $(document).ready(function() {
 	
 	var lastUpdateDate = getLastUpdate();
 	
+	//Fogli stile condizionali per Mac
+	if (navigator.platform.indexOf("Mac") != -1) {
+		$('head').append('<link type="text/css" href="css/mac.css" rel="stylesheet" />');
+	}
+	
 	$( "#breadcrumbs" ).hide();
 	$("#recordNumber").val('0');
 	$("#dateUpdate").val(lastUpdateDate);
@@ -761,14 +766,13 @@ $(document).ready(function() {
 			
 			var finestraBolliniHtml = $("#scheda-btt").html();
 			
-			if ($(".struttura-titolo:contains('scaricabile')").length>0) {
+			if ($(".struttura-titolo:contains('ersione online scaricabile')").length>0) {
 				if (Titanium.Network.online && rs.fieldByName("volume_titolo").indexOf("ersione online") != -1) { //verifica che lo stesso volume sia presente su scuolabook!
 					$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}","<img id=\"etext-logo\" src=\"img/etext.png\" onclick=\"Titanium.Platform.openURL('http://www.scuolabook.it/catalogsearch/result/?q="+rs.fieldByName("volume_isbn")+"')\" />"));
 				} else {
 					$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}","<img id=\"etext-logo\" src=\"img/etext.png\" />"));					
 				}
 			} else {
-				
 				$("#scheda-btt").html(finestraBolliniHtml.replace("{ETEXT-LOGO}",""));
 			}
 			
@@ -907,6 +911,5 @@ $(document).ready(function() {
 			}
 			document.getElementById('dlsize').innerText = unitify(dlbytes,BINARY_UNITS);
 		};
- 
 		$worker.start();
 	}
