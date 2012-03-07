@@ -262,7 +262,7 @@ $(document).ready(function() {
 		var contenutoContent = 	"<h1>Catalogo Pearson Italia</h1><ul id=\"sceltaScuola\">"+
 								"<li><a href=\"Javascript:switchArea('1')\" id=\"scuolaPrimaria\">Scuola<BR />Primaria</a></li>"+
 								"<li><a href=\"Javascript:switchArea('2')\" id=\"scuolaSecondaria\">Scuola<BR />Secondaria</a></li>"+
-								"<li><a href=\"Javascript:switchArea('555')\" id=\"variaUniversita\">Saggistica,<BR />Universit&agrave;<BR />e professionale</a></li>"+
+								"<li><a href=\"Javascript:switchArea('555')\" id=\"variaUniversita\">Saggistica,<BR />Universit&agrave;<BR />e Professionale</a></li>"+
 								"</ul>";
 			
 		$( "#contenuto" ).css('background-color', '#FFFFFF');
