@@ -170,6 +170,7 @@ $(document).ready(function() {
 			
 			case '1':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.gif\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"macrodestinazione\" name=\"macrodestinazione\" value=\"\" />";
@@ -183,6 +184,7 @@ $(document).ready(function() {
 				break;
 			case '2':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.gif\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Grado scuola</option><option value=\" primo grado -\">Primo grado</option><option value=\" secondo grado -\">Secondo grado</option></select>"; 
@@ -196,6 +198,7 @@ $(document).ready(function() {
 				break;
 			case '555':
 				var ricercaContent = "<fieldset><legend>Ricerca</legend>";
+				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.gif\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
 				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Scegli</option><option value=\" varia -\">Varia</option><option value=\" università -\">Università</option></select>"; 
@@ -208,7 +211,9 @@ $(document).ready(function() {
 				ricercaContent = ricercaContent+"</fieldset>";
 				break;
 		}
-			
+
+		$( "#back" ).hide();
+		$( "#back-icon" ).hide();
 		$( "#breadcrumbs" ).html(breadcrumbsContent).show();
 		$( "#ricerca" ).html(ricercaContent);
 		$( "#materiaStr" ).val($('#materiaStrLabel').val());
@@ -519,7 +524,9 @@ $(document).ready(function() {
 			db.close();
 		
 			var breadcrumbsContent = "<p><a href=\"Javascript:backHome()\">Inizio</a> > <a href=\"Javascript:switchArea('"+$("#areaId").val()+"')\">"+getAreaName($("#areaId").val())+"</a> > Risultato ricerca</p>";
-		
+
+			$( "#back" ).hide();
+			$( "#back-icon" ).hide();
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
 			$( "#contenuto" ).html(risultatoRicercaHtml);
 			$( "#strato" ).show();
@@ -718,6 +725,8 @@ $(document).ready(function() {
 			$( "#breadcrumbs" ).html(breadcrumbsContent);
 			$( "#breadcrumbs" ).css("color","#888888");
 			$( "#contenuto" ).html(schedaHtml);
+			$( "#back" ).show();
+			$( "#back-icon" ).show();
 			
 			var finestraBolliniHtml = $("#scheda-btt").html();
 			
