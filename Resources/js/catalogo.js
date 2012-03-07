@@ -153,7 +153,7 @@ $(document).ready(function() {
 	function getAreaName(areaId) {
 		
 		switch (areaId) {
-			
+
 			case '1':
 				var areaName = "Scuola Primaria";
 				break;
@@ -161,7 +161,7 @@ $(document).ready(function() {
 				var areaName = "Scuola Secondaria";
 				break;
 			case '555':
-				var areaName = "Varia / Universit&agrave;";
+				var areaName = "Saggistica, Universit&agrave; e Professionale";
 				break;
 		}
 	
@@ -207,7 +207,7 @@ $(document).ready(function() {
 				ricercaContent = ricercaContent+"<div id=\"back\"><a href=\"Javascript:startSearch()\"><img src=\"img/back.png\" onmouseover=\"this.src='img/back-hover.png'\" onmouseout=\"this.src='img/back.png'\" alt=\"\" title=\"\" id=\"back-icon\" /></a></div>";
 				ricercaContent = ricercaContent+"<div id=\"strato\" onclick=\"switchArea('"+areaId+"')\"><img src=\"img/closeIcon.gif\" alt=\"\" title=\"\" onclick=\"switchArea('"+areaId+"')\" id=\"close-icon\" /><p onclick=\"switchArea('"+areaId+"')\">nuova ricerca</p></div>"; 
 				ricercaContent = ricercaContent+"<input type=\"hidden\" id=\"areaId\" name=\"areaId\" value=\""+areaId+"\" />"; 
-				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Scegli</option><option value=\" varia -\">Varia</option><option value=\" università -\">Università</option></select>"; 
+				ricercaContent = ricercaContent+"<select id=\"macrodestinazione\" class=\"first\"><option value=\"\">Settore</option><option value=\" varia -\">Saggistica e Professionale</option><option value=\" università -\">Università</option></select>"; 
 				ricercaContent = ricercaContent+"<select id=\"marchio_id\"><option value=\"\">Marchio</option><option value=\"32324\">Bruno Mondadori</option><option value=\"69291\">Pearson</option></select>"; 
 				ricercaContent = ricercaContent+"<input type=\"text\" id=\"materiaStr\" name=\"materiaStr\" value=\"\" onclick=\"if ($(this).val()==$('#materiaStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#materiaStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
 				ricercaContent = ricercaContent+"<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" onclick=\"if ($(this).val()==$('#searchStrLabel').val()) { $(this).val(''); }\" onblur=\"if ($(this).val()=='') { $(this).val($('#searchStrLabel').val()); }\" onkeypress = \"if (event.keyCode == 13) { startSearch() }\" />";
@@ -259,8 +259,12 @@ $(document).ready(function() {
 	
 	function backHome() {
 	
-		var contenutoContent = "<h1>Catalogo Pearson Italia</h1><ul id=\"sceltaScuola\"><li><a href=\"Javascript:switchArea('1')\" id=\"scuolaPrimaria\">Scuola Primaria</a></li><li><a href=\"Javascript:switchArea('2')\" id=\"scuolaSecondaria\">Scuola Secondaria</a></li><li><a href=\"Javascript:switchArea('555')\" id=\"variaUniversita\">Varia / Universit&agrave;</a></li></ul>";
-		
+		var contenutoContent = 	"<h1>Catalogo Pearson Italia</h1><ul id=\"sceltaScuola\">"+
+								"<li><a href=\"Javascript:switchArea('1')\" id=\"scuolaPrimaria\">Scuola<BR />Primaria</a></li>"+
+								"<li><a href=\"Javascript:switchArea('2')\" id=\"scuolaSecondaria\">Scuola<BR />Secondaria</a></li>"+
+								"<li><a href=\"Javascript:switchArea('555')\" id=\"variaUniversita\">Saggistica,<BR />Universit&agrave;<BR />e professionale</a></li>"+
+								"</ul>";
+			
 		$( "#contenuto" ).css('background-color', '#FFFFFF');
 		$( "#breadcrumbs" ).html('').hide();
 		$( "#stampa" ).hide();

@@ -97,7 +97,7 @@ a {
 	font-size:18px;
 	font-weight:bolder;
 	width:200px;
-	height:30px;
+	height:70px;
 	text-decoration:none;
 	padding-top:208px;
 }
@@ -240,6 +240,9 @@ a {
 }
 #ricerca fieldset select.first {
 	margin-left:0;
+}
+#ricerca fieldset #macrodestinazione {
+	width:120px;
 }
 #ricerca fieldset #marchio_id {
 	width:100px;
