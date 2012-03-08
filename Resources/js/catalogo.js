@@ -704,7 +704,12 @@ $(document).ready(function() {
 				schedaHtml = schedaHtml+"</div>";
 				
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaSx\">";
-				schedaHtml = schedaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
+				
+				if (imgHexString!="") {
+					
+					schedaHtml = schedaHtml+"<img src=\"data:"+imgContentType+";base64,"+base64Encode(hex2bin(imgHexString))+"\" />";
+				}
+				
 				schedaHtml = schedaHtml+"</div>";
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaDx\">";
 				schedaHtml = schedaHtml+"<p class=\"risultato-isbn\">ISBN: "+rs.fieldByName("volume_isbn")+"</p>";
