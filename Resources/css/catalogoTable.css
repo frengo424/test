@@ -546,17 +546,20 @@ p.header-row-expanded {
 	padding:0;
 	border:0;
 	text-align:left;
-	overflow:hidden;
+	overflow:auto;
+	background-color:#F1F1F1;
 }
 
 #box-struttura div.struttura {
-	display:block;
-	margin:0;
+	display:table;
+	/*width:100%;*/ 
+	margin:25px 0 0 0;
 	padding:10px;
 	padding-left:0;
 	border:0;
 	background-color:#F1F1F1;
 	overflow:hidden;
+	border-spacing:10px;
 }
 
 .volume-descrizione {
@@ -568,26 +571,29 @@ p.header-row-expanded {
 	margin-top:7px;
 }
 .volume-struttura {
-	float:left;
-	width:20%;
-	margin:0;
-	margin-left:10px;
-	margin-top:10px;
+	/*float:left;*/
+	display:table-cell;  
+	width:250px;
 	padding:10px;
 	border:1px solid #666;
 	background-color:#FFF;
 }
 
 .box-struttura-volumi {
-	padding-top:0;
+	display:table-row;
+	padding-top:20px;
 	padding-bottom:20px;
 	overflow:hidden;
 }
 
 p.struttura-titolo {
-	margin:0;
+	position:absolute;
+	left:20px;
+	right:20px;
+	margin-top:-30px;
+/*	margin:0;
 	margin-bottom:10px;
-	margin-left:10px;
+	margin-left:10px;*/
 	padding:0;
 	padding-left:10px;
 	padding-right:10px;

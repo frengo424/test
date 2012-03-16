@@ -62,7 +62,13 @@ $(document).ready(function() {
 		
 		verificaUpdate();	
 	}
-});
+	
+	$.fn.equalizeHeights = function(){
+		return this.height(Math.max.apply(this, $(this).map(function(i,e){ return $(e).height() }).get() ) )
+		}
+	});
+
+
 
 /* Funzioni Aggiornamento */
 
@@ -765,9 +771,16 @@ $(document).ready(function() {
 				schedaHtml = schedaHtml+"</div>";
 				
 				if (rs.fieldByName("struttura_html")!="" & $("#areaId").val()!=555) {
-					
-					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row')){$(this).removeClass('header-row');$(this).addClass('header-row-expanded');} else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
+
+					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row'))";
+					schedaHtml = schedaHtml+"{$(this).removeClass('header-row');$(this).addClass('header-row-expanded');";
+					schedaHtml = schedaHtml+"$('.struttura').each( function(i,e) { alert('haha'); e.find('.volume-struttura').equalizeHeights(); } ); } ";
+					schedaHtml = schedaHtml+"else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+decimalSeparator(rs.fieldByName("struttura_html"))+"</div>";
+
+					//$('.volume-struttura').equalizeHeights();
+
+
 				}
 			}
 
