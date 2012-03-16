@@ -63,10 +63,21 @@ $(document).ready(function() {
 		verificaUpdate();	
 	}
 	
+	//dato un set di div ne uniforma l'altezza adeguandosi al più alto
 	$.fn.equalizeHeights = function(){
 		return this.height(Math.max.apply(this, $(this).map(function(i,e){ return $(e).height() }).get() ) )
-		}
+	}
+
+	$(window).resize(function(){
+		//Qui si dovrebbe in qualche modo rimuovere l'altezza impostata
+		$('.volume-struttura').height('auto');
+		$('.struttura').each( function(i) { 
+			$(this).find('.volume-struttura').equalizeHeights();
+		});
 	});
+
+	
+});
 
 
 
@@ -774,7 +785,7 @@ $(document).ready(function() {
 
 					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row'))";
 					schedaHtml = schedaHtml+"{$(this).removeClass('header-row');$(this).addClass('header-row-expanded');";
-					schedaHtml = schedaHtml+"$('.struttura').each( function(i,e) { alert('haha'); e.find('.volume-struttura').equalizeHeights(); } ); } ";
+					schedaHtml = schedaHtml+"$('.struttura').each( function(i) { $(this).find('.volume-struttura').equalizeHeights(); } ); } ";
 					schedaHtml = schedaHtml+"else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+decimalSeparator(rs.fieldByName("struttura_html"))+"</div>";
 
