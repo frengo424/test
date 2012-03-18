@@ -853,6 +853,7 @@ $(document).ready(function() {
 				db.close();
 				
 				$("#sezione-struttura").html(contenutoStruttura);
+				$(".volume-struttura:contains('"+isbnVolume+"')").css("border", "2px solid #666").css("opacity", ".7");
 			}
 			
 			$( "#contenuto" ).scrollTop(0);
