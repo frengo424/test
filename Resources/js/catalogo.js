@@ -69,11 +69,12 @@ $(document).ready(function() {
 	}
 
 	$(window).resize(function(){
-		//Qui si dovrebbe in qualche modo rimuovere l'altezza impostata
-		$('.volume-struttura').height('auto');
-		$('.struttura').each( function(i) { 
-			$(this).find('.volume-struttura').equalizeHeights();
-		});
+		if ($('.volume-struttura').lenght() != 0) {
+			$('.volume-struttura').height('auto');
+			$('.struttura').each( function(i) { 
+				$(this).find('.volume-struttura').equalizeHeights();
+			});
+		}
 	});
 
 	
@@ -853,7 +854,9 @@ $(document).ready(function() {
 				db.close();
 				
 				$("#sezione-struttura").html(contenutoStruttura);
-				$(".volume-struttura:contains('"+isbnVolume+"')").css("border", "2px solid #666").css("opacity", ".7");
+				
+				//aggiungi l'ombra al volume selezionato all'interno della struttura
+				$(".volume-struttura:contains('"+isbnVolume+"')").css("-webkit-box-shadow", "5px 5px 12px #333"); //.css("border", "2px solid #666")
 			}
 			
 			$( "#contenuto" ).scrollTop(0);

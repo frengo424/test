@@ -575,6 +575,7 @@ p.header-row-expanded {
 	margin-top:10px;
 	padding:10px;
 	border:1px solid #666;
+	border-radius:10px;
 	background-color:#FFF;
 }
 
@@ -599,6 +600,7 @@ p.struttura-titolo {
 	text-align:left;
 	font-weight:bold;
 	line-height:30px;
+	border-radius:4px;
 }
 
 .struttura-sottotitolo {
