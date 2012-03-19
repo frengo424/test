@@ -781,9 +781,9 @@ $(document).ready(function() {
 					
 						var shopLink = "http://www.internetbookshop.it/ser/serdsp.asp?shop=1520&isbn="+rs.fieldByName("volume_isbn");
 					
-						if (titoloVolume.toLowerCase().indexOf("on line")!=-1) {
+						if (titoloVolume.toLowerCase().indexOf("online")!=-1 || titoloVolume.toLowerCase().indexOf("on-line")!=-1) {
 						
-							shopLink = "http://www.bookrepublic.it/book/"+rs.fieldByName("volume_isbn")+"-"+titoloVolume.toLowerCase().spiana().replace(/ /gi,"-")+"/";
+							shopLink = "http://www.bookrepublic.it/book/"+rs.fieldByName("volume_isbn")+"-"+titoloVolume.toLowerCase().spiana().replace(/[:.'’,;\"”“]/gi,"").replace(/  /gi," ").replace(/  /gi," ").replace(/ /gi,"-").replace(/<br>versione-online/gi,"").replace(/<br\/>versione-online/gi,"").replace(/<br-\/>versione-online/gi,"").replace(/---/gi,"-").replace(/--/gi,"-")+"/";
 						}
 
 						schedaHtml = schedaHtml+"<input type=\"button\" id=\"shopOnlineBtt\" name=\"shopOnlineBtt\" onclick=\"Titanium.Platform.openURL('"+shopLink+"')\" value=\"Acquista on line\" />";
