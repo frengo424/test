@@ -160,6 +160,21 @@ a {
 	right:10px;
 }
 
+#finestraNuovaApp {
+	display:none;
+}
+
+#interrompi_na {
+	position:absolute;
+	bottom:10px;
+	left:10px;
+}
+
+#scarica_na {
+	position:absolute;
+	bottom:10px;
+	right:10px;
+}
 /************************************************
 ** Breadcrumbs
 ************************************************/
@@ -702,6 +717,11 @@ p.struttura-titolo {
 	margin-right:6px;
 }
 
+#scheda-btt #shopOnlineBtt {
+	float:right;
+	clear:both;
+	margin-right:6px;
+}
 
 /************************************************
 ** FOOTER

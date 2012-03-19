@@ -19,6 +19,8 @@ $(document).ready(function() {
 	$("#dateUpdate").val(lastUpdateDate);
 	$("#ultimoAggiornamento").html(printDate(lastUpdateDate));
 	
+	/* Tasti finestra download aggiornamento catalogo */
+	
 	$( "#interrompi" ).button();
 	$( "#interrompi" ).click(function() { $( "#finestraAggiornamento" ).dialog('close'); return false; });
 
@@ -34,6 +36,8 @@ $(document).ready(function() {
 		return false;
 	});
 
+	/* Tasti finestra installazione aggiornamento catalogo */
+	
 	$( "#interrompi_inst" ).button();
 	$( "#interrompi_inst" ).click(function() { $( "#finestraInstallazione" ).dialog('close'); return false; });
 
@@ -58,11 +62,35 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	/* Tasti finestra download aggiornamento applicazione */
+	
+	$( "#interrompi_na" ).button();
+	$( "#interrompi_na" ).click(function() { $( "#finestraNuovaApp" ).dialog('close'); verificaUpdate(); return false; });
+
+	$( "#scarica_na" ).button();
+	$( "#scarica_na" ).click(function() {
+
+		Titanium.Platform.openURL('http://www.pearson.it/catalogo_offline');
+		
+		$( "#finestraNuovaApp" ).dialog('close');
+
+		Titanium.App.exit();
+		
+		return false;
+	});
+	
+	if (Titanium.Network.online) {
+		
+		/* Controllo versione applicazione */
+		
+		verificaApp();
+	}
+	/*
 	if (Titanium.Network.online) {
 		
 		verificaUpdate();	
 	}
-	
+	*/
 	//dato un set di div ne uniforma l'altezza adeguandosi al più alto
 	$.fn.equalizeHeights = function(){
 		return this.height(Math.max.apply(this, $(this).map(function(i,e){ return $(e).height() }).get() ) )
@@ -83,6 +111,32 @@ $(document).ready(function() {
 
 
 /* Funzioni Aggiornamento */
+
+	function verificaApp(){
+		
+		if (Titanium.Network.online) {
+			
+			$.ajaxSetup({ async:false });
+			
+			$.get('http://listino.pearsonitalia.it/appVersion.action.php', function(data) {
+				
+				if (data!=Titanium.App.version) {
+					
+					$( "#finestraNuovaApp" ).dialog({ modal: true, width: 600, height:280, resizable: false }); 
+					
+				} else {
+					
+					verificaUpdate();
+				}
+			});
+		
+			$.ajaxSetup({ async:true });
+			
+		} else {
+			
+			alert("Per controllare l'esistenza di una nuova versione dell'applicazione è necessario disporre di una connessione a Internet.");
+		}
+	}
 
 	function verificaUpdate(){
 		
@@ -695,7 +749,7 @@ $(document).ready(function() {
 				
 				titoloVolume = rs.fieldByName("volume_titolo");
 				isbnVolume = rs.fieldByName("volume_isbn");
-				
+	
 				schedaHtml = schedaHtml+"<div class=\"risultatoRigaScheda\">";
 				
 				schedaHtml = schedaHtml+"<div id=\"scheda-btt\">";
@@ -716,6 +770,23 @@ $(document).ready(function() {
 						//}
 					} else {
 						schedaHtml = schedaHtml+"<img id=\"digilibro-logo\" src=\"img/digilibro.png\" />{ETEXT-LOGO}";
+					}
+				}
+				
+				/* Pulsante acquista online */
+
+				if ($("#areaId").val()==555) {
+					
+					if (Titanium.Network.online) {
+					
+						var shopLink = "http://www.internetbookshop.it/ser/serdsp.asp?shop=1520&isbn="+rs.fieldByName("volume_isbn");
+					
+						if (titoloVolume.toLowerCase().indexOf("on line")!=-1) {
+						
+							shopLink = "http://www.bookrepublic.it/book/"+rs.fieldByName("volume_isbn")+"-"+titoloVolume.toLowerCase().spiana().replace(/ /gi,"-")+"/";
+						}
+
+						schedaHtml = schedaHtml+"<input type=\"button\" id=\"shopOnlineBtt\" name=\"shopOnlineBtt\" onclick=\"Titanium.Platform.openURL('"+shopLink+"')\" value=\"Acquista on line\" />";
 					}
 				}
 				
@@ -958,3 +1029,42 @@ $(document).ready(function() {
 		};
 		$worker.start();
 	}
+
+	/* Funzione per link Acquista online */
+	
+	var accentate = {
+		",": " ",
+		"ç": "c",
+		"æ": "ae",
+		"œ": "oe",
+		"á": "a",
+		"é": "e",
+		"í": "i",
+		"ó": "o",
+		"ú": "u",
+		"à": "a",
+		"è": "e",
+		"ì": "i",
+		"ò": "o",
+		"ù": "u",
+		"ä": "a",
+		"ë": "e",
+		"ï": "i",
+		"ö": "o",
+		"ü": "u",
+		"ÿ": "y",
+		"â": "a",
+		"ê": "e",
+		"î": "i",
+		"ô": "o",
+		"û": "u",
+		"å": "a",
+		"e": "e",
+		"i": "i",
+		"ø": "o",
+		"u": "u"
+	};
+
+	String.prototype.spiana = function() {
+		return this.replace(/[^A-Za-z0-9]/g, function(x) { return accentate[x] || x; })
+	};
