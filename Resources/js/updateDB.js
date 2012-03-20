@@ -5,7 +5,7 @@ var numRecord = Titanium.App.numRecord;
 var numQuery = 0;
 var insertSql = "";
 	
-var dbPath = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'Resources/catalogo.sqlite');
+var dbPath = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDataDirectory(), 'catalogo.sqlite');
 
 if (dbPath.exists()) {
 

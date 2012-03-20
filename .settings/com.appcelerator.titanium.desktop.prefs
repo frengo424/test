@@ -1,26 +1,17 @@
-<<<<<<< HEAD
-#Thu Mar 08 22:26:56 CET 2012
-=======
-#Wed Mar 07 18:30:48 CET 2012
->>>>>>> 62291e049eeaa960e548753d56f98b86310591b3
+#Mon Mar 19 20:13:06 CET 2012
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=62291e049eeaa960e548753d56f98b86310591b3
 eclipse.preferences.version=1
 packages/OSX\ 10.5\ Intel/app_page=http\://api.appcelerator.net/p/pages/app_page?token\=64vRsrN4
 packages/OSX\ 10.5\ Intel/app_version=1.0
 packages/OSX\ 10.5\ Intel/label=OSX 10.5 Intel
 packages/OSX\ 10.5\ Intel/platform=osx
 packages/OSX\ 10.5\ Intel/pubdate=2012-02-19 03\:57\:06
-<<<<<<< HEAD
-packages/OSX\ 10.5\ Intel/url=http\://api.appcelerator.net/p/v1/download?token\=04w4LcW6
-=======
-packages/OSX\ 10.5\ Intel/url=http\://api.appcelerator.net/p/v1/download?token\=S4w432N2
->>>>>>> 62291e049eeaa960e548753d56f98b86310591b3
+packages/OSX\ 10.5\ Intel/url=http\://api.appcelerator.net/p/v1/download?token\=m4wbsKk3
 packages/Windows\ 32-bit/app_page=http\://api.appcelerator.net/p/pages/app_page?token\=64vRsrN4
 packages/Windows\ 32-bit/app_version=1.0
 packages/Windows\ 32-bit/label=Windows 32-bit
 packages/Windows\ 32-bit/platform=win32
 packages/Windows\ 32-bit/pubdate=2012-02-19 03\:57\:06
-<<<<<<< HEAD
-packages/Windows\ 32-bit/url=http\://api.appcelerator.net/p/v1/download?token\=h4w4L8K5
-=======
-packages/Windows\ 32-bit/url=http\://api.appcelerator.net/p/v1/download?token\=G4w432z3
->>>>>>> 62291e049eeaa960e548753d56f98b86310591b3
+packages/Windows\ 32-bit/url=http\://api.appcelerator.net/p/v1/download?token\=M4wbsHY4
