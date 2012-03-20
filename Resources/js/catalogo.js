@@ -172,8 +172,8 @@ $(document).ready(function() {
 	function chiediUpdate(){
 	
 		verificaUpdate();
-		
-		if ($("#recordNumber").val()==0) {
+
+		if ($("#recordNumber").val()==0 && Titanium.Network.online) {
 			alert("Il listino è aggiornato.");
 		}
 	}
