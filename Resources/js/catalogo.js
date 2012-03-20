@@ -977,7 +977,7 @@ $(document).ready(function() {
 
 	function getDbPath () {
 		var db = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDataDirectory(), 'catalogo.sqlite');
-		alert (db.toString());
+		//alert (db.toString());
 		if (!db.exists()) {
 			//alert ("inizio copia DB");
 			var sorgente = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'Resources/catalogo.sqlite');
