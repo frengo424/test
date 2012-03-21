@@ -461,9 +461,11 @@ $(document).ready(function() {
     				sql = sql+" WHERE (";
     			}
     			
-    			sql = sql+" volume_isbn LIKE '%"+$("#searchStr").val()+"%'";
-    			sql = sql+" OR volume_titolo LIKE '%"+$("#searchStr").val()+"%'";
-    			sql = sql+" OR volume_autori LIKE '%"+$("#searchStr").val()+"%'";
+    			var stringaRicerca = $("#searchStr").val().replace(/['"]/gi, "_");
+    			
+    			sql = sql+" volume_isbn LIKE '%"+stringaRicerca+"%'";
+    			sql = sql+" OR volume_titolo LIKE '%"+stringaRicerca+"%'";
+    			sql = sql+" OR volume_autori LIKE '%"+stringaRicerca+"%'";
     			sql = sql+" )";
     			
     			isFilter = true;
@@ -473,11 +475,11 @@ $(document).ready(function() {
     			    			
     			if (isFilter) {
     				
-    				sql = sql+" AND percorsi_html LIKE '%"+$("#materiaStr").val()+"%'";
+    				sql = sql+" AND percorsi_html LIKE '%"+$("#materiaStr").val().replace(/['"]/gi, "_")+"%'";
     				
     			} else {
     				
-    				sql = sql+" WHERE percorsi_html LIKE '%"+$("#materiaStr").val()+"%'";
+    				sql = sql+" WHERE percorsi_html LIKE '%"+$("#materiaStr").val().replace(/['"]/gi, "_")+"%'";
     			}
 
     			isFilter = true;
@@ -487,11 +489,11 @@ $(document).ready(function() {
     			    			
     			if (isFilter) {
     				
-    				sql = sql+" AND opera_marchio_id='"+$("#marchio_id").val()+"'";
+    				sql = sql+" AND opera_marchio_id='"+$("#marchio_id").val().replace(/['"]/gi, "_")+"'";
     				
     			} else {
     				
-    				sql = sql+" WHERE opera_marchio_id='"+$("#marchio_id").val()+"'";
+    				sql = sql+" WHERE opera_marchio_id='"+$("#marchio_id").val().replace(/['"]/gi, "_")+"'";
     			}
     			
     			isFilter = true;
@@ -503,11 +505,11 @@ $(document).ready(function() {
     				
     				if (isFilter) {
     				
-    					sql = sql+" AND percorsi_html LIKE '%"+$("#macrodestinazione").val()+"%'";
+    					sql = sql+" AND percorsi_html LIKE '%"+$("#macrodestinazione").val().replace(/['"]/gi, "_")+"%'";
     					
     				} else {
     				
-    					sql = sql+" WHERE percorsi_html LIKE '%"+$("#macrodestinazione").val()+"%'";
+    					sql = sql+" WHERE percorsi_html LIKE '%"+$("#macrodestinazione").val().replace(/['"]/gi, "_")+"%'";
     				}
     			
     				isFilter = true;
