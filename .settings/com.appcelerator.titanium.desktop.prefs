@@ -1,4 +1,4 @@
-#Tue Mar 20 12:27:36 CET 2012
+#Thu Mar 22 12:06:43 CET 2012
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=62291e049eeaa960e548753d56f98b86310591b3
@@ -8,10 +8,4 @@ packages/OSX\ 10.5\ Intel/app_version=1.0
 packages/OSX\ 10.5\ Intel/label=OSX 10.5 Intel
 packages/OSX\ 10.5\ Intel/platform=osx
 packages/OSX\ 10.5\ Intel/pubdate=2012-02-19 03\:57\:06
-packages/OSX\ 10.5\ Intel/url=http\://api.appcelerator.net/p/v1/download?token\=34wbSmM4
-packages/Windows\ 32-bit/app_page=http\://api.appcelerator.net/p/pages/app_page?token\=64vRsrN4
-packages/Windows\ 32-bit/app_version=1.0
-packages/Windows\ 32-bit/label=Windows 32-bit
-packages/Windows\ 32-bit/platform=win32
-packages/Windows\ 32-bit/pubdate=2012-02-19 03\:57\:06
-packages/Windows\ 32-bit/url=http\://api.appcelerator.net/p/v1/download?token\=34wbScQ2
+packages/OSX\ 10.5\ Intel/url=http\://api.appcelerator.net/p/v1/download?token\=a4wd5NS5

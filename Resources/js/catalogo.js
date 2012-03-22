@@ -97,7 +97,7 @@ $(document).ready(function() {
 	}
 
 	$(window).resize(function(){
-		if ($('.volume-struttura').lenght() != 0) {
+		if ($('.volume-struttura').lenght != 0) {
 			$('.volume-struttura').height('auto');
 			$('.struttura').each( function(i) { 
 				$(this).find('.volume-struttura').equalizeHeights();
@@ -105,7 +105,6 @@ $(document).ready(function() {
 		}
 	});
 
-	
 });
 
 
@@ -861,7 +860,7 @@ $(document).ready(function() {
 
 					schedaHtml = schedaHtml+"<p class=\"header-row\" onclick=\"$('#sezione-struttura').slideToggle('fast');if($(this).hasClass('header-row'))";
 					schedaHtml = schedaHtml+"{$(this).removeClass('header-row');$(this).addClass('header-row-expanded');";
-					schedaHtml = schedaHtml+"$('.struttura').each( function(i) { $(this).find('.volume-struttura').equalizeHeights(); } ); } ";
+					schedaHtml = schedaHtml+"$('.volume-struttura').height('auto'); $('.struttura').each( function(i) { $(this).find('.volume-struttura').equalizeHeights(); } ); } ";
 					schedaHtml = schedaHtml+"else {$(this).removeClass('header-row-expanded');$(this).addClass('header-row');}\" id=\"header-struttura\">Struttura dell'offerta</p>";
 					schedaHtml = schedaHtml+"<div class=\"sezione\" id=\"sezione-struttura\">"+decimalSeparator(rs.fieldByName("struttura_html"))+"</div>";
 
