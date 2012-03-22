@@ -461,7 +461,7 @@ $(document).ready(function() {
     				sql = sql+" WHERE (";
     			}
     			
-    			var stringaRicerca = $("#searchStr").val().replace(/['"]/gi, "_");
+    			var stringaRicerca = $("#searchStr").val().replace(/[']/gi, "''");
     			
     			sql = sql+" volume_isbn LIKE '%"+stringaRicerca+"%'";
     			sql = sql+" OR volume_titolo LIKE '%"+stringaRicerca+"%'";
@@ -475,11 +475,11 @@ $(document).ready(function() {
     			    			
     			if (isFilter) {
     				
-    				sql = sql+" AND percorsi_html LIKE '%"+$("#materiaStr").val().replace(/['"]/gi, "_")+"%'";
+    				sql = sql+" AND percorsi_html LIKE '%"+$("#materiaStr").val().replace(/[']/gi, "''")+"%'";
     				
     			} else {
     				
-    				sql = sql+" WHERE percorsi_html LIKE '%"+$("#materiaStr").val().replace(/['"]/gi, "_")+"%'";
+    				sql = sql+" WHERE percorsi_html LIKE '%"+$("#materiaStr").val().replace(/[']/gi, "''")+"%'";
     			}
 
     			isFilter = true;
@@ -489,11 +489,11 @@ $(document).ready(function() {
     			    			
     			if (isFilter) {
     				
-    				sql = sql+" AND opera_marchio_id='"+$("#marchio_id").val().replace(/['"]/gi, "_")+"'";
+    				sql = sql+" AND opera_marchio_id='"+$("#marchio_id").val().replace(/[']/gi, "''")+"'";
     				
     			} else {
     				
-    				sql = sql+" WHERE opera_marchio_id='"+$("#marchio_id").val().replace(/['"]/gi, "_")+"'";
+    				sql = sql+" WHERE opera_marchio_id='"+$("#marchio_id").val().replace(/[']/gi, "''")+"'";
     			}
     			
     			isFilter = true;
@@ -505,11 +505,11 @@ $(document).ready(function() {
     				
     				if (isFilter) {
     				
-    					sql = sql+" AND percorsi_html LIKE '%"+$("#macrodestinazione").val().replace(/['"]/gi, "_")+"%'";
+    					sql = sql+" AND percorsi_html LIKE '%"+$("#macrodestinazione").val().replace(/[']/gi, "''")+"%'";
     					
     				} else {
     				
-    					sql = sql+" WHERE percorsi_html LIKE '%"+$("#macrodestinazione").val().replace(/['"]/gi, "_")+"%'";
+    					sql = sql+" WHERE percorsi_html LIKE '%"+$("#macrodestinazione").val().replace(/['"]/gi, "''")+"%'";
     				}
     			
     				isFilter = true;
