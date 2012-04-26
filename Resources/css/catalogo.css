@@ -163,7 +163,14 @@ a {
 #finestraNuovaApp {
 	display:none;
 }
-
+#finestraAccess {
+	display:none;
+}
+.associazioni{
+	color:#555;
+	font-style: italic;
+	font-size: .8em;
+}
 #interrompi_na {
 	position:absolute;
 	bottom:10px;

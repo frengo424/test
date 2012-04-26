@@ -313,7 +313,8 @@ $(document).ready(function() {
 				break;
 				
 			default:
-				var contenutoContent = "<h2>Pearson, a norma dal 2009</h2>";
+				var contenutoContent = "<span class='associazioni'>Le richieste di libri contenuti in questo catalogo per la riproduzione a favore di studenti non vedenti, ipovedenti o con disturbi specifici di apprendimento, possono essere inoltrate alle Associazioni competenti. <a href='#' onclick=\"$( '#finestraAccess' ).dialog({ modal: true, width: 600, height:350, resizable: true })\" >Per saperne di più</a></span>";
+				contenutoContent = contenutoContent+= "<h2>Pearson, a norma dal 2009</h2>";
 				contenutoContent = contenutoContent+"<p id=\"explain\">Con DIGIlibro libro misto Pearson ha offerto fin dal 2009 la garanzia"; 
 				contenutoContent = contenutoContent+"<br />che le proprie proposte sono a norma di legge, nella forma mista cartacea e digitale."; 
 				contenutoContent = contenutoContent+"<br /><br />DIGIlibro libro misto e eTEXT fanno parte del Pearson Digital System:";  
