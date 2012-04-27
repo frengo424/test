@@ -1,11 +1,10 @@
-#Fri Mar 23 11:47:43 CET 2012
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=62291e049eeaa960e548753d56f98b86310591b3
 eclipse.preferences.version=1
-packages/OSX\ 10.5\ Intel/app_page=http\://api.appcelerator.net/p/pages/app_page?token\=64vRsrN4
-packages/OSX\ 10.5\ Intel/app_version=1.0
-packages/OSX\ 10.5\ Intel/label=OSX 10.5 Intel
-packages/OSX\ 10.5\ Intel/platform=osx
-packages/OSX\ 10.5\ Intel/pubdate=2012-02-19 03\:57\:06
-packages/OSX\ 10.5\ Intel/url=http\://api.appcelerator.net/p/v1/download?token\=94wdHkp0
+packages/Windows\ 32-bit/app_page=http\://api.appcelerator.net/p/pages/app_page?token\=64vRsrN4
+packages/Windows\ 32-bit/app_version=1.0
+packages/Windows\ 32-bit/label=Windows 32-bit
+packages/Windows\ 32-bit/platform=win32
+packages/Windows\ 32-bit/pubdate=2012-02-19 03\:57\:06
+packages/Windows\ 32-bit/url=http\://api.appcelerator.net/p/v1/download?token\=t4wDL7h4
