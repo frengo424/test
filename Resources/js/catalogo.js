@@ -448,7 +448,7 @@ $(document).ready(function() {
     		
     		var isFilter = false;
     		
-    		var sql = "SELECT * from (SELECT volume_id, volume_isbn, volume_autori, volume_titolo, volume_sottotitolo, opera_marchio, percorsi_html, volume_anno_pubblicazione, hex_copertina FROM catalogo";
+    		var sql = "SELECT * from (SELECT * from (SELECT volume_id, volume_isbn, volume_autori, volume_titolo, volume_sottotitolo, opera_marchio, percorsi_html, volume_anno_pubblicazione, hex_copertina FROM catalogo";
     		
     		if ($("#searchStr").val()!="" & $("#searchStr").val()!=$("#searchStrLabel").val()) {
     			    			
@@ -565,7 +565,7 @@ $(document).ready(function() {
 				}
     		}
     		
-    		sql = sql+" ORDER BY volume_titolo ASC, volume_sottotitolo ASC) ORDER BY volume_anno_pubblicazione DESC";
+    		sql = sql+" ORDER BY volume_titolo ASC) ORDER BY volume_sottotitolo ASC) ORDER BY volume_anno_pubblicazione DESC";
     		
 			var rs = db.execute(sql);
 
